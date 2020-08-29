@@ -50,8 +50,9 @@ func lineShowLabel() *charts.Line {
 			Title: "Line-显示 Label",
 		}),
 	)
+
 	line.SetXAxis(nameItems).
-		AddSeries("商家B", generateLineItems()).
+		AddSeries("商家A", generateLineItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
 				Show: true,
@@ -69,11 +70,12 @@ func lineMarkPoint() *charts.Line {
 	)
 
 	line.SetXAxis(nameItems).AddSeries("商家A", generateLineItems()).
-		SetSeriesOptions(charts.WithMarkPointNameTypeItemOpts(
-			opts.MarkPointNameTypeItem{Name: "最大值", Type: "max"},
-			opts.MarkPointNameTypeItem{Name: "平均值", Type: "average"},
-			opts.MarkPointNameTypeItem{Name: "最小值", Type: "min"},
-		),
+		SetSeriesOptions(
+			charts.WithMarkPointNameTypeItemOpts(
+				opts.MarkPointNameTypeItem{Name: "最大值", Type: "max"},
+				opts.MarkPointNameTypeItem{Name: "平均值", Type: "average"},
+				opts.MarkPointNameTypeItem{Name: "最小值", Type: "min"},
+			),
 			charts.WithMarkPointStyleOpts(
 				opts.MarkPointStyle{Label: &opts.Label{Show: true}}),
 		)
@@ -107,6 +109,7 @@ func lineStep() *charts.Line {
 			Title: "Line-阶梯图",
 		}),
 	)
+
 	line.SetXAxis(nameItems).AddSeries("商家A", generateLineItems()).
 		SetSeriesOptions(charts.WithLineChartOpts(
 			opts.LineChart{
@@ -142,10 +145,11 @@ func lineArea() *charts.Line {
 	)
 
 	line.SetXAxis(nameItems).AddSeries("商家A", generateLineItems()).
-		SetSeriesOptions(charts.WithLabelOpts(
-			opts.Label{
-				Show: true,
-			}),
+		SetSeriesOptions(
+			charts.WithLabelOpts(
+				opts.Label{
+					Show: true,
+				}),
 			charts.WithAreaStyleOpts(
 				opts.AreaStyle{
 					Opacity: 0.2,
