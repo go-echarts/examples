@@ -1,19 +1,19 @@
 package main
 
 import (
-	"github.com/go-echarts/go-echarts/components"
 	"io"
 	"log"
 	"math/rand"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
+	"github.com/go-echarts/go-echarts/components"
 	"github.com/go-echarts/go-echarts/opts"
 )
 
 var (
 	itemCntLine = 6
-	nameItems   = []string{"衬衫", "牛仔裤", "运动裤", "袜子", "冲锋衣", "羊毛衫"}
+	nameItems   = []string{"Apple", "Banana", "Peach ", "Lemon", "Pear", "Cherry"}
 )
 
 func generateLineItems() []opts.LineData {
@@ -35,11 +35,14 @@ func generateLineData(data []float32) []opts.LineData {
 func lineBase() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{Title: "Line-示例图"}),
+		charts.WithTitleOpts(opts.Title{
+			Title:    "Line-basic-example",
+			Subtitle: "This is the subtitle.",
+		}),
 	)
 
 	line.SetXAxis(nameItems).
-		AddSeries("商家A", generateLineItems())
+		AddSeries("Category A", generateLineItems())
 	return line
 }
 
@@ -47,12 +50,14 @@ func lineShowLabel() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Line-显示 Label",
+			Title:    "Line-with-title/label-opts",
+			Subtitle: "go-echarts is an awesome chart library written in Golang",
+			Link:     "https://github.com/go-echarts/go-echarts",
 		}),
 	)
 
 	line.SetXAxis(nameItems).
-		AddSeries("商家A", generateLineItems()).
+		AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
 				Show: true,
@@ -65,16 +70,16 @@ func lineMarkPoint() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Line-标记点",
+			Title: "Line-markpoint",
 		}),
 	)
 
-	line.SetXAxis(nameItems).AddSeries("商家A", generateLineItems()).
+	line.SetXAxis(nameItems).AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(
 			charts.WithMarkPointNameTypeItemOpts(
-				opts.MarkPointNameTypeItem{Name: "最大值", Type: "max"},
-				opts.MarkPointNameTypeItem{Name: "平均值", Type: "average"},
-				opts.MarkPointNameTypeItem{Name: "最小值", Type: "min"},
+				opts.MarkPointNameTypeItem{Name: "Maximum", Type: "max"},
+				opts.MarkPointNameTypeItem{Name: "Average", Type: "average"},
+				opts.MarkPointNameTypeItem{Name: "Minimum", Type: "min"},
 			),
 			charts.WithMarkPointStyleOpts(
 				opts.MarkPointStyle{Label: &opts.Label{Show: true}}),
@@ -86,7 +91,7 @@ func lineSplitLine() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Line-显示分割线",
+			Title: "Line-splitline",
 		}),
 		charts.WithYAxisOpts(opts.YAxis{
 			SplitLine: &opts.SplitLine{
@@ -95,7 +100,7 @@ func lineSplitLine() *charts.Line {
 		}),
 	)
 
-	line.SetXAxis(nameItems).AddSeries("商家A", generateLineItems(),
+	line.SetXAxis(nameItems).AddSeries("Category A", generateLineItems(),
 		charts.WithLabelOpts(
 			opts.Label{Show: true},
 		))
@@ -106,11 +111,11 @@ func lineStep() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Line-阶梯图",
+			Title: "Line-step",
 		}),
 	)
 
-	line.SetXAxis(nameItems).AddSeries("商家A", generateLineItems()).
+	line.SetXAxis(nameItems).AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(charts.WithLineChartOpts(
 			opts.LineChart{
 				Step: true,
@@ -123,11 +128,11 @@ func lineSmooth() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Line-平滑曲线",
+			Title: "Line-smooth",
 		}),
 	)
 
-	line.SetXAxis(nameItems).AddSeries("商家A", generateLineItems()).
+	line.SetXAxis(nameItems).AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(charts.WithLineChartOpts(
 			opts.LineChart{
 				Smooth: true,
@@ -140,11 +145,11 @@ func lineArea() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Line-填充区域",
+			Title: "Line-area",
 		}),
 	)
 
-	line.SetXAxis(nameItems).AddSeries("商家A", generateLineItems()).
+	line.SetXAxis(nameItems).AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(
 				opts.Label{
@@ -162,11 +167,11 @@ func lineSmoothArea() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Line-平滑区域",
+			Title: "Line-smooth-area",
 		}),
 	)
 
-	line.SetXAxis(nameItems).AddSeries("商家A", generateLineItems()).
+	line.SetXAxis(nameItems).AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
 				Show: true,
@@ -185,7 +190,7 @@ func lineMulti() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Line-多线",
+			Title: "Line-multi-lines",
 		}),
 		charts.WithInitializationOpts(opts.Initialization{
 			Theme: "shine",
@@ -193,10 +198,10 @@ func lineMulti() *charts.Line {
 	)
 
 	line.SetXAxis(nameItems).
-		AddSeries("商家 A", generateLineItems()).
-		AddSeries("商家 B", generateLineItems()).
-		AddSeries("商家 C", generateLineItems()).
-		AddSeries("商家 D", generateLineItems())
+		AddSeries("Category  A", generateLineItems()).
+		AddSeries("Category  B", generateLineItems()).
+		AddSeries("Category  C", generateLineItems()).
+		AddSeries("Category  D", generateLineItems())
 	return line
 }
 
@@ -205,16 +210,16 @@ func lineDemo() *charts.Line {
 
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "查询时间对比 哈希表 vs 二分查找",
+			Title: "Search Time: Hash table vs Binary search",
 		}),
 		charts.WithYAxisOpts(opts.YAxis{
-			Name: "搜索时间(ns)",
+			Name: "Cost time(ns)",
 			SplitLine: &opts.SplitLine{
 				Show: false,
 			},
 		}),
 		charts.WithXAxisOpts(opts.XAxis{
-			Name: "元素数量",
+			Name: "Elements",
 		}),
 	)
 
@@ -225,7 +230,7 @@ func lineDemo() *charts.Line {
 			charts.WithLabelOpts(opts.Label{Show: true, Position: "top"})).
 		SetSeriesOptions(
 			charts.WithMarkLineNameTypeItemOpts(opts.MarkLineNameTypeItem{
-				Name: "平均值",
+				Name: "Average",
 				Type: "average",
 			}),
 			charts.WithLineChartOpts(opts.LineChart{
