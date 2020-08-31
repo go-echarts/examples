@@ -13,7 +13,7 @@ import (
 
 var (
 	itemCntLine = 6
-	nameItems   = []string{"Apple", "Banana", "Peach ", "Lemon", "Pear", "Cherry"}
+	fruits      = []string{"Apple", "Banana", "Peach ", "Lemon", "Pear", "Cherry"}
 )
 
 func generateLineItems() []opts.LineData {
@@ -41,7 +41,7 @@ func lineBase() *charts.Line {
 		}),
 	)
 
-	line.SetXAxis(nameItems).
+	line.SetXAxis(fruits).
 		AddSeries("Category A", generateLineItems())
 	return line
 }
@@ -56,7 +56,7 @@ func lineShowLabel() *charts.Line {
 		}),
 	)
 
-	line.SetXAxis(nameItems).
+	line.SetXAxis(fruits).
 		AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
@@ -74,7 +74,7 @@ func lineMarkPoint() *charts.Line {
 		}),
 	)
 
-	line.SetXAxis(nameItems).AddSeries("Category A", generateLineItems()).
+	line.SetXAxis(fruits).AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(
 			charts.WithMarkPointNameTypeItemOpts(
 				opts.MarkPointNameTypeItem{Name: "Maximum", Type: "max"},
@@ -100,7 +100,7 @@ func lineSplitLine() *charts.Line {
 		}),
 	)
 
-	line.SetXAxis(nameItems).AddSeries("Category A", generateLineItems(),
+	line.SetXAxis(fruits).AddSeries("Category A", generateLineItems(),
 		charts.WithLabelOpts(
 			opts.Label{Show: true},
 		))
@@ -115,7 +115,7 @@ func lineStep() *charts.Line {
 		}),
 	)
 
-	line.SetXAxis(nameItems).AddSeries("Category A", generateLineItems()).
+	line.SetXAxis(fruits).AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(charts.WithLineChartOpts(
 			opts.LineChart{
 				Step: true,
@@ -132,7 +132,7 @@ func lineSmooth() *charts.Line {
 		}),
 	)
 
-	line.SetXAxis(nameItems).AddSeries("Category A", generateLineItems()).
+	line.SetXAxis(fruits).AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(charts.WithLineChartOpts(
 			opts.LineChart{
 				Smooth: true,
@@ -149,7 +149,7 @@ func lineArea() *charts.Line {
 		}),
 	)
 
-	line.SetXAxis(nameItems).AddSeries("Category A", generateLineItems()).
+	line.SetXAxis(fruits).AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(
 				opts.Label{
@@ -171,7 +171,7 @@ func lineSmoothArea() *charts.Line {
 		}),
 	)
 
-	line.SetXAxis(nameItems).AddSeries("Category A", generateLineItems()).
+	line.SetXAxis(fruits).AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
 				Show: true,
@@ -197,7 +197,7 @@ func lineMulti() *charts.Line {
 		}),
 	)
 
-	line.SetXAxis(nameItems).
+	line.SetXAxis(fruits).
 		AddSeries("Category  A", generateLineItems()).
 		AddSeries("Category  B", generateLineItems()).
 		AddSeries("Category  C", generateLineItems()).
