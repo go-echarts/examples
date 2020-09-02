@@ -281,5 +281,4 @@ func main() {
 		log.Println(err)
 	}
 	_ = page.Render(io.MultiWriter(os.Stdout, f))
-
 }
