@@ -1,11 +1,13 @@
 package main
 
 import (
+	"io"
 	"log"
-	"net/http"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
+	"github.com/go-echarts/go-echarts/components"
+	"github.com/go-echarts/go-echarts/opts"
 )
 
 var (
@@ -24,31 +26,52 @@ var (
 	}
 )
 
+func generateBoxPlotItems(boxPlotData [][]int) []opts.BoxPlotData {
+	items := make([]opts.BoxPlotData, 0)
+	for i := 0; i < len(boxPlotData); i++ {
+		items = append(items, opts.BoxPlotData{Value: boxPlotData[i]})
+	}
+	return items
+
+}
+
 func boxPlotBase() *charts.BoxPlot {
 	bp := charts.NewBoxPlot()
-	bp.SetGlobalOptions(charts.TitleOpts{Title: "BoxPlot-示例图"})
-	bp.SetXAxis(bpX).AddSeries("boxplot", bpY)
+	bp.SetGlobalOptions(
+		charts.WithTitleOpts(opts.Title{
+			Title: "BoxPlot-basic-example",
+		}),
+	)
+
+	bp.SetXAxis(bpX).AddSeries("boxplot", generateBoxPlotItems(bpY))
 	return bp
 }
 
 func boxPlotMulti() *charts.BoxPlot {
 	bp := charts.NewBoxPlot()
-	bp.SetGlobalOptions(charts.TitleOpts{Title: "BoxPlot-多 Series"})
+	bp.SetGlobalOptions(
+		charts.WithTitleOpts(opts.Title{
+			Title: "BoxPlot-Multi-Series",
+		}),
+	)
+
 	bp.SetXAxis(bpX[:2]).
-		AddSeries("boxplot1", bpY[:2]).
-		AddSeries("boxplot2", bpY[2:])
+		AddSeries("boxplot1", generateBoxPlotItems(bpY[:2])).
+		AddSeries("boxplot2", generateBoxPlotItems(bpY[2:]))
 	return bp
 }
 
-func boxPlotHandler(w http.ResponseWriter, _ *http.Request) {
-	page := charts.NewPage(orderRouters("boxPlot")...)
+func main() {
+	page := components.NewPage()
 	page.AddCharts(
 		boxPlotBase(),
 		boxPlotMulti(),
 	)
-	f, err := os.Create(getRenderPath("boxPlot.html"))
+	f, err := os.Create("boxPlot.html")
 	if err != nil {
 		log.Println(err)
+
 	}
-	page.Render(w, f)
+	_ = page.Render(io.MultiWriter(os.Stdout, f))
+
 }
