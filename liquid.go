@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/go-echarts/go-echarts/components"
-	"github.com/go-echarts/go-echarts/opts"
 	"io"
 	"log"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
+	"github.com/go-echarts/go-echarts/components"
+	"github.com/go-echarts/go-echarts/opts"
 )
 
 func genLiquidItems(data []float32) []opts.LiquidData {
