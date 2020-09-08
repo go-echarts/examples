@@ -13,21 +13,23 @@ import (
 	"github.com/go-echarts/go-echarts/opts"
 )
 
-var sankeyNode = []opts.SankeyNode{
-	{Name: "category1"},
-	{Name: "category2"},
-	{Name: "category3"},
-	{Name: "category4"},
-	{Name: "category5"},
-	{Name: "category6"},
-}
+var (
+	sankeyNode = []opts.SankeyNode{
+		{Name: "category1"},
+		{Name: "category2"},
+		{Name: "category3"},
+		{Name: "category4"},
+		{Name: "category5"},
+		{Name: "category6"},
+	}
 
-var sankeyLink = []opts.SankeyLink{
-	{Source: "category1", Target: "category2", Value: 10},
-	{Source: "category2", Target: "category3", Value: 15},
-	{Source: "category3", Target: "category4", Value: 20},
-	{Source: "category5", Target: "category6", Value: 25},
-}
+	sankeyLink = []opts.SankeyLink{
+		{Source: "category1", Target: "category2", Value: 10},
+		{Source: "category2", Target: "category3", Value: 15},
+		{Source: "category3", Target: "category4", Value: 20},
+		{Source: "category5", Target: "category6", Value: 25},
+	}
+)
 
 func sankeyBase() *charts.Sankey {
 	sankey := charts.NewSankey()
@@ -36,6 +38,7 @@ func sankeyBase() *charts.Sankey {
 			Title: "Sankey-basic-example",
 		}),
 	)
+
 	sankey.AddSeries("sankey", sankeyNode, sankeyLink, charts.WithLabelOpts(opts.Label{Show: true}))
 	return sankey
 }
@@ -62,6 +65,7 @@ func graphEnergy() *charts.Sankey {
 	if err := json.Unmarshal(file, &data); err != nil {
 		fmt.Println(err)
 	}
+
 	sankey.AddSeries("sankey", data.Nodes, data.Links).
 		SetSeriesOptions(
 			charts.WithLineStyleOpts(opts.LineStyle{
@@ -86,7 +90,6 @@ func main() {
 	if err != nil {
 		log.Println(err)
 	}
-
 	_ = page.Render(io.MultiWriter(os.Stdout, f))
 
 }
