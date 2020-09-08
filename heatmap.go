@@ -51,15 +51,15 @@ var (
 )
 
 func genHeatMapData() []opts.HeatMapData {
-	item := make([]opts.HeatMapData, 0)
+	items := make([]opts.HeatMapData, 0)
 	for i := 0; i < len(hmData); i++ {
 		if hmData[i][2] == 0 {
-			item = append(item, opts.HeatMapData{Value: [3]interface{}{hmData[i][1], hmData[i][0], "-"}})
+			items = append(items, opts.HeatMapData{Value: [3]interface{}{hmData[i][1], hmData[i][0], "-"}})
 		} else {
-			item = append(item, opts.HeatMapData{Value: [3]interface{}{hmData[i][1], hmData[i][0], hmData[i][2]}})
+			items = append(items, opts.HeatMapData{Value: [3]interface{}{hmData[i][1], hmData[i][0], hmData[i][2]}})
 		}
 	}
-	return item
+	return items
 }
 
 func heatMapBase() *charts.HeatMap {
