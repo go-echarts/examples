@@ -1,13 +1,20 @@
 package main
 
 import (
+	"io"
 	"log"
 	"math"
-	"net/http"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
+	"github.com/go-echarts/go-echarts/components"
+	"github.com/go-echarts/go-echarts/opts"
 )
+
+var surfaceRangeColor = []string{
+	"#313695", "#4575b4", "#74add1", "#abd9e9", "#e0f3f8",
+	"#fee090", "#fdae61", "#f46d43", "#d73027", "#a50026",
+}
 
 func genSurface3dData0() [][3]interface{} {
 	data := make([][3]interface{}, 0)
@@ -39,14 +46,17 @@ func genSurface3dData1() [][3]interface{} {
 func surface3DBase() *charts.Surface3D {
 	surface3d := charts.NewSurface3D()
 	surface3d.SetGlobalOptions(
-		charts.TitleOpts{Title: "surface3D-示例图"},
-		charts.VisualMapOpts{
+		charts.WithTitleOpts(opts.Title{
+			Title: "surface3D-example",
+		}),
+		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
-			InRange:    charts.VMInRange{Color: rangeColor},
+			InRange:    &opts.VisualMapInRange{Color: surfaceRangeColor},
 			Max:        3,
 			Min:        -3,
-		},
+		}),
 	)
+
 	surface3d.AddZAxis("surface3d", genSurface3dData0())
 	return surface3d
 }
@@ -54,27 +64,31 @@ func surface3DBase() *charts.Surface3D {
 func surface3DRose() *charts.Surface3D {
 	surface3d := charts.NewSurface3D()
 	surface3d.SetGlobalOptions(
-		charts.TitleOpts{Title: "surface3D-一朵玫瑰"},
-		charts.VisualMapOpts{
+		charts.WithTitleOpts(opts.Title{
+			Title: "surface3D-Rose",
+		}),
+		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
-			InRange:    charts.VMInRange{Color: rangeColor},
+			InRange:    &opts.VisualMapInRange{Color: surfaceRangeColor},
 			Max:        3,
 			Min:        -3,
-		},
+		}),
 	)
+
 	surface3d.AddZAxis("surface3d", genSurface3dData1())
 	return surface3d
 }
 
-func surface3DHandler(w http.ResponseWriter, _ *http.Request) {
-	page := charts.NewPage(orderRouters("surface3D")...)
-	page.Add(
+func main() {
+	page := components.NewPage()
+	page.AddCharts(
 		surface3DBase(),
 		surface3DRose(),
 	)
-	f, err := os.Create(getRenderPath("surface3D.html"))
+
+	f, err := os.Create("surface3D.html")
 	if err != nil {
 		log.Println(err)
 	}
-	page.Render(w, f)
+	_ = page.Render(io.MultiWriter(os.Stdout, f))
 }
