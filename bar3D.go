@@ -165,7 +165,7 @@ func main() {
 
 	f, err := os.Create("bar3D.html")
 	if err != nil {
-		log.Panicln(err)
+		log.Println(err)
 
 	}
 	_ = page.Render(io.MultiWriter(os.Stdout, f))
