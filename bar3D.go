@@ -1,16 +1,32 @@
 package main
 
 import (
+	"io"
 	"log"
-	"net/http"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
+	"github.com/go-echarts/go-echarts/components"
+	"github.com/go-echarts/go-echarts/opts"
+)
+
+var (
+	bar3DRangeColor = []string{
+		"#313695", "#4575b4", "#74add1", "#abd9e9", "#e0f3f8",
+		"#fee090", "#fdae61", "#f46d43", "#d73027", "#a50026",
+	}
+
+	bar3DHrs = [...]string{
+		"12a", "1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a",
+		"12p", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p",
+	}
+
+	bar3DDays = [...]string{"Saturday", "Friday", "Thursday", "Wednesday", "Tuesday", "Monday", "Sunday"}
 )
 
 func genBar3dData() [][3]int {
 
-	data := [][3]int{
+	bar3DDays := [][3]int{
 		{0, 0, 5}, {0, 1, 1}, {0, 2, 0}, {0, 3, 0}, {0, 4, 0}, {0, 5, 0},
 		{0, 6, 0}, {0, 7, 0}, {0, 8, 0}, {0, 9, 0}, {0, 10, 0}, {0, 11, 2},
 		{0, 12, 4}, {0, 13, 1}, {0, 14, 1}, {0, 15, 3}, {0, 16, 4}, {0, 17, 6},
@@ -41,96 +57,117 @@ func genBar3dData() [][3]int {
 		{6, 18, 0}, {6, 19, 0}, {6, 20, 1}, {6, 21, 2}, {6, 22, 2}, {6, 23, 6},
 	}
 
-	for i := 0; i < len(data); i++ {
-		data[i][0], data[i][1] = data[i][1], data[i][0]
+	for i := 0; i < len(bar3DDays); i++ {
+		bar3DDays[i][0], bar3DDays[i][1] = bar3DDays[i][1], bar3DDays[i][0]
 	}
-	return data
+	return bar3DDays
 }
 
 func bar3DBase() *charts.Bar3D {
 	bar3d := charts.NewBar3D()
 	bar3d.SetGlobalOptions(
-		charts.TitleOpts{Title: "Bar3D-示例图"},
-		charts.VisualMapOpts{
-			Range:      []float32{0, 30},
+		charts.WithTitleOpts(opts.Title{
+			Title: "Bar3D-example",
+		}),
+		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
-			InRange:    charts.VMInRange{Color: rangeColor},
 			Max:        30,
-		},
-		charts.Grid3DOpts{BoxDepth: 80, BoxWidth: 200},
+			Range:      []float32{0, 30},
+			InRange:    &opts.VisualMapInRange{Color: bar3DRangeColor},
+		}),
+		charts.WithGrid3DOpts(opts.Grid3D{
+			BoxWidth: 200,
+			BoxDepth: 80,
+		}),
 	)
-	bar3d.AddXYAxis(hours, days).AddZAxis("bar3d", genBar3dData())
+
+	bar3d.AddXYAxis(bar3DHrs, bar3DDays).AddZAxis("bar3d", genBar3dData())
 	return bar3d
 }
 
 func bar3DAutoRotate() *charts.Bar3D {
 	bar3d := charts.NewBar3D()
 	bar3d.SetGlobalOptions(
-		charts.TitleOpts{Title: "Bar3D-自动旋转"},
-		charts.VisualMapOpts{
-			Range:      []float32{0, 30},
+		charts.WithTitleOpts(opts.Title{
+			Title: "Bar3D-auto-rotate",
+		}),
+		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
-			InRange:    charts.VMInRange{Color: rangeColor},
 			Max:        30,
-		},
-		charts.Grid3DOpts{
-			BoxDepth:    80,
+			Range:      []float32{0, 30},
+			InRange:    &opts.VisualMapInRange{Color: bar3DRangeColor},
+		}),
+		charts.WithGrid3DOpts(opts.Grid3D{
 			BoxWidth:    160,
-			ViewControl: charts.ViewControlOpts{AutoRotate: true},
-		},
+			BoxDepth:    80,
+			ViewControl: opts.ViewControl{AutoRotate: true},
+		}),
 	)
-	bar3d.AddXYAxis(hours, days).AddZAxis("bar3d", genBar3dData())
+
+	bar3d.AddXYAxis(bar3DHrs, bar3DDays).AddZAxis("bar3d", genBar3dData())
 	return bar3d
 }
 
 func bar3DRotateSpeed() *charts.Bar3D {
 	bar3d := charts.NewBar3D()
 	bar3d.SetGlobalOptions(
-		charts.TitleOpts{Title: "Bar3D-提高旋转速度"},
-		charts.VisualMapOpts{
-			Range:      []float32{0, 30},
+		charts.WithTitleOpts(opts.Title{
+			Title: "Bar3D-rotate-faster",
+		}),
+		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
-			InRange:    charts.VMInRange{Color: rangeColor},
 			Max:        30,
-		},
-		charts.Grid3DOpts{
-			BoxDepth:    80,
+			Range:      []float32{0, 30},
+			InRange:    &opts.VisualMapInRange{Color: bar3DRangeColor},
+		}),
+		charts.WithGrid3DOpts(opts.Grid3D{
 			BoxWidth:    160,
-			ViewControl: charts.ViewControlOpts{AutoRotate: true, AutoRotateSpeed: 50},
-		},
+			BoxDepth:    80,
+			ViewControl: opts.ViewControl{AutoRotate: true, AutoRotateSpeed: 200},
+		}),
 	)
-	bar3d.AddXYAxis(hours, days).AddZAxis("bar3d", genBar3dData())
+
+	bar3d.AddXYAxis(bar3DHrs, bar3DDays).AddZAxis("bar3d", genBar3dData())
 	return bar3d
 }
 
 func bar3DShading() *charts.Bar3D {
 	bar3d := charts.NewBar3D()
 	bar3d.SetGlobalOptions(
-		charts.TitleOpts{Title: "Bar3D-shading(lambert)"},
-		charts.VisualMapOpts{
-			Range:      []float32{0, 30},
+		charts.WithTitleOpts(opts.Title{
+			Title: "Bar3D-shading(lambert)",
+		}),
+		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
-			InRange:    charts.VMInRange{Color: rangeColor},
 			Max:        30,
-		},
-		charts.Grid3DOpts{BoxDepth: 80, BoxWidth: 200},
+			Range:      []float32{0, 30},
+			InRange:    &opts.VisualMapInRange{Color: bar3DRangeColor},
+		}),
+		charts.WithGrid3DOpts(opts.Grid3D{
+			BoxWidth: 200,
+			BoxDepth: 80,
+		}),
 	)
-	bar3d.AddXYAxis(hours, days).
-		AddZAxis("bar3d", genBar3dData(), charts.Bar3DOpts{Shading: "lambert"})
+
+	bar3d.AddXYAxis(bar3DHrs, bar3DDays).
+		AddZAxis("bar3d", genBar3dData(), charts.WithBar3DChartOpts(opts.Bar3DChart{Shading: "lambert"}))
 	return bar3d
 }
 
-func bar3DHandler(w http.ResponseWriter, _ *http.Request) {
-	page := charts.NewPage(orderRouters("bar3D")...)
-	page.Add(
+func main() {
+	page := components.NewPage()
+	page.AddCharts(
 		bar3DBase(),
 		bar3DAutoRotate(),
 		bar3DRotateSpeed(),
 		bar3DShading(),
 	)
-	f, err := os.Create(getRenderPath("bar3D.html"))
+
+	f, err := os.Create("bar3D.html")
 	if err != nil {
 		log.Println(err)
+
 	}
-	page.Render(w, f)
+	_ = page.Render(io.MultiWriter(os.Stdout, f))
+
 }
