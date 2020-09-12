@@ -305,7 +305,7 @@ func main() {
 		klineStyle(),
 	)
 
-	f, err := os.Create("F:/kline.html")
+	f, err := os.Create("kline.html")
 	if err != nil {
 		log.Println(err)
 
