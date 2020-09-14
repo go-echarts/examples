@@ -1,11 +1,13 @@
 package main
 
 import (
+	"io"
 	"log"
-	"net/http"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
+	"github.com/go-echarts/go-echarts/components"
+	"github.com/go-echarts/go-echarts/opts"
 )
 
 type klineData struct {
@@ -108,19 +110,30 @@ func klineBase() *charts.Kline {
 	kline := charts.NewKLine()
 
 	x := make([]string, 0)
-	y := make([][4]float32, 0)
+	y := make([]opts.KlineData, 0)
 	for i := 0; i < len(kd); i++ {
 		x = append(x, kd[i].date)
-		y = append(y, kd[i].data)
+		y = append(y, opts.KlineData{Value: kd[i].data})
 	}
 
-	kline.AddXAxis(x).AddYAxis("kline", y)
 	kline.SetGlobalOptions(
-		charts.TitleOpts{Title: "Kline-示例图"},
-		charts.XAxisOpts{SplitNumber: 20},
-		charts.YAxisOpts{Scale: true},
-		charts.DataZoomOpts{XAxisIndex: []int{0}, Start: 50, End: 100},
+		charts.WithTitleOpts(opts.Title{
+			Title: "Kline-example",
+		}),
+		charts.WithXAxisOpts(opts.XAxis{
+			SplitNumber: 20,
+		}),
+		charts.WithYAxisOpts(opts.YAxis{
+			Scale: true,
+		}),
+		charts.WithDataZoomOpts(opts.DataZoom{
+			Start:      50,
+			End:        100,
+			XAxisIndex: []int{0},
+		}),
 	)
+
+	kline.SetXAxis(x).AddSeries("kline", y)
 	return kline
 }
 
@@ -128,19 +141,31 @@ func klineDataZoomInside() *charts.Kline {
 	kline := charts.NewKLine()
 
 	x := make([]string, 0)
-	y := make([][4]float32, 0)
+	y := make([]opts.KlineData, 0)
 	for i := 0; i < len(kd); i++ {
 		x = append(x, kd[i].date)
-		y = append(y, kd[i].data)
+		y = append(y, opts.KlineData{Value: kd[i].data})
 	}
 
-	kline.AddXAxis(x).AddYAxis("kline", y)
 	kline.SetGlobalOptions(
-		charts.TitleOpts{Title: "Kline-DataZoom(inside)"},
-		charts.XAxisOpts{SplitNumber: 20},
-		charts.YAxisOpts{Scale: true},
-		charts.DataZoomOpts{Type: "inside", XAxisIndex: []int{0}, Start: 50, End: 100},
+		charts.WithTitleOpts(opts.Title{
+			Title: "Kline-DataZoom(inside)",
+		}),
+		charts.WithXAxisOpts(opts.XAxis{
+			SplitNumber: 20,
+		}),
+		charts.WithYAxisOpts(opts.YAxis{
+			Scale: true,
+		}),
+		charts.WithDataZoomOpts(opts.DataZoom{
+			Type:       "inside",
+			Start:      50,
+			End:        100,
+			XAxisIndex: []int{0},
+		}),
 	)
+
+	kline.SetXAxis(x).AddSeries("kline", y)
 	return kline
 }
 
@@ -148,20 +173,38 @@ func klineDataZoomBoth() *charts.Kline {
 	kline := charts.NewKLine()
 
 	x := make([]string, 0)
-	y := make([][4]float32, 0)
+	y := make([]opts.KlineData, 0)
 	for i := 0; i < len(kd); i++ {
 		x = append(x, kd[i].date)
-		y = append(y, kd[i].data)
+		y = append(y, opts.KlineData{Value: kd[i].data})
 	}
 
-	kline.AddXAxis(x).AddYAxis("kline", y)
 	kline.SetGlobalOptions(
-		charts.TitleOpts{Title: "Kline-DataZoom(inside+slider)"},
-		charts.XAxisOpts{SplitNumber: 20},
-		charts.YAxisOpts{Scale: true},
-		charts.DataZoomOpts{Type: "inside", XAxisIndex: []int{0}, Start: 50, End: 100},
-		charts.DataZoomOpts{Type: "slider", XAxisIndex: []int{0}, Start: 50, End: 100},
+		charts.WithTitleOpts(opts.Title{
+			Title: "Kline-DataZoom(inside&slider)",
+		}),
+		charts.WithXAxisOpts(opts.XAxis{
+			SplitNumber: 20,
+		}),
+		charts.WithYAxisOpts(opts.YAxis{
+			Scale: true,
+		}),
+		charts.WithDataZoomOpts(opts.DataZoom{
+			Type:       "inside",
+			Start:      50,
+			End:        100,
+			XAxisIndex: []int{0},
+		}),
+		charts.WithDataZoomOpts(opts.DataZoom{
+			Type:       "slider",
+			Start:      50,
+			End:        100,
+			XAxisIndex: []int{0},
+		}),
+
 	)
+
+	kline.SetXAxis(x).AddSeries("kline", y)
 	return kline
 }
 
@@ -169,19 +212,31 @@ func klineDataZoomYAxis() *charts.Kline {
 	kline := charts.NewKLine()
 
 	x := make([]string, 0)
-	y := make([][4]float32, 0)
+	y := make([]opts.KlineData, 0)
 	for i := 0; i < len(kd); i++ {
 		x = append(x, kd[i].date)
-		y = append(y, kd[i].data)
+		y = append(y, opts.KlineData{Value: kd[i].data})
 	}
 
-	kline.AddXAxis(x).AddYAxis("kline", y)
 	kline.SetGlobalOptions(
-		charts.TitleOpts{Title: "Kline-DataZoom(yAxis)"},
-		charts.XAxisOpts{SplitNumber: 20},
-		charts.YAxisOpts{Scale: true},
-		charts.DataZoomOpts{Type: "slider", YAxisIndex: []int{0}, Start: 50, End: 100},
+		charts.WithTitleOpts(opts.Title{
+			Title: "Kline-DataZoom(yAxis)",
+		}),
+		charts.WithXAxisOpts(opts.XAxis{
+			SplitNumber: 20,
+		}),
+		charts.WithYAxisOpts(opts.YAxis{
+			Scale: true,
+		}),
+		charts.WithDataZoomOpts(opts.DataZoom{
+			Type:       "slider",
+			Start:      50,
+			End:        100,
+			YAxisIndex: []int{0},
+		}),
 	)
+
+	kline.SetXAxis(x).AddSeries("kline", y)
 	return kline
 }
 
@@ -189,41 +244,72 @@ func klineStyle() *charts.Kline {
 	kline := charts.NewKLine()
 
 	x := make([]string, 0)
-	y := make([][4]float32, 0)
+	y := make([]opts.KlineData, 0)
 	for i := 0; i < len(kd); i++ {
 		x = append(x, kd[i].date)
-		y = append(y, kd[i].data)
+		y = append(y, opts.KlineData{Value: kd[i].data})
 	}
-	kline.AddXAxis(x)
-	kline.AddYAxis("kline", y)
+
 	kline.SetGlobalOptions(
-		charts.TitleOpts{Title: "Kline-不同风格"},
-		charts.XAxisOpts{SplitNumber: 20},
-		charts.YAxisOpts{Scale: true},
-		charts.DataZoomOpts{XAxisIndex: []int{0}, Start: 50, End: 100},
+		charts.WithTitleOpts(opts.Title{
+			Title: "Kline-more-style",
+		}),
+		charts.WithXAxisOpts(opts.XAxis{
+			SplitNumber: 20,
+		}),
+		charts.WithYAxisOpts(opts.YAxis{
+			Scale: true,
+		}),
+		charts.WithDataZoomOpts(opts.DataZoom{
+			Start:      50,
+			End:        100,
+			XAxisIndex: []int{0},
+		}),
 	)
-	kline.SetSeriesOptions(
-		charts.MPNameTypeItem{Name: "highest value", Type: "max", ValueDim: "highest"},
-		charts.MPNameTypeItem{Name: "lowest value", Type: "min", ValueDim: "lowest"},
-		charts.MPStyleOpts{Label: charts.LabelTextOpts{Show: true}},
-		charts.ItemStyleOpts{
-			Color: "#ec0000", Color0: "#00da3c", BorderColor: "#8A0000", BorderColor0: "#008F28"},
-	)
+
+	kline.SetXAxis(x).AddSeries("kline", y).
+		SetSeriesOptions(
+			charts.WithMarkPointNameTypeItemOpts(opts.MarkPointNameTypeItem{
+				Name:     "highest value",
+				Type:     "max",
+				ValueDim: "highest",
+			}),
+			charts.WithMarkPointNameTypeItemOpts(opts.MarkPointNameTypeItem{
+				Name:     "lowest value",
+				Type:     "min",
+				ValueDim: "lowest",
+			}),
+			charts.WithMarkPointStyleOpts(opts.MarkPointStyle{
+				Label: &opts.Label{
+					Show: true,
+				},
+			}),
+			charts.WithItemStyleOpts(opts.ItemStyle{
+				Color:        "#ec0000",
+				Color0:       "#00da3c",
+				BorderColor:  "#8A0000",
+				BorderColor0: "#008F28",
+			}),
+		)
 	return kline
 }
 
-func klineHandler(w http.ResponseWriter, _ *http.Request) {
-	page := charts.NewPage(orderRouters("kline")...)
-	page.Add(
+func main() {
+	page := components.NewPage()
+
+	page.AddCharts(
 		klineBase(),
 		klineDataZoomInside(),
 		klineDataZoomBoth(),
 		klineDataZoomYAxis(),
 		klineStyle(),
 	)
-	f, err := os.Create(getRenderPath("kline.html"))
+
+	f, err := os.Create("kline.html")
 	if err != nil {
 		log.Println(err)
+
 	}
-	page.Render(w, f)
+	_ = page.Render(io.MultiWriter(os.Stdout, f))
+
 }
