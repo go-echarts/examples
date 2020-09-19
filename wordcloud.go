@@ -109,5 +109,4 @@ func main() {
 
 	}
 	_ = page.Render(io.MultiWriter(os.Stdout, f))
-
 }
