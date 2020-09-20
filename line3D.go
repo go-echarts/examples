@@ -66,6 +66,7 @@ func line3DAutoRotate() *charts.Line3D {
 			},
 		}),
 	)
+
 	line3d.AddZAxis("line3D", genLine3dData())
 	return line3d
 }
