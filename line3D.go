@@ -1,13 +1,20 @@
 package main
 
 import (
+	"io"
 	"log"
 	"math"
-	"net/http"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
+	"github.com/go-echarts/go-echarts/components"
+	"github.com/go-echarts/go-echarts/opts"
 )
+
+var line3DColor = []string{
+	"#313695", "#4575b4", "#74add1", "#abd9e9", "#e0f3f8",
+	"#fee090", "#fdae61", "#f46d43", "#d73027", "#a50026",
+}
 
 func genLine3dData() [][3]float64 {
 	data := make([][3]float64, 0)
@@ -27,13 +34,16 @@ func genLine3dData() [][3]float64 {
 func line3DBase() *charts.Line3D {
 	line3d := charts.NewLine3D()
 	line3d.SetGlobalOptions(
-		charts.TitleOpts{Title: "Line3D-示例图"},
-		charts.VisualMapOpts{
+		charts.WithTitleOpts(opts.Title{
+			Title: "Line3D-example",
+		}),
+		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
-			InRange:    charts.VMInRange{Color: rangeColor},
 			Max:        30,
-		},
+			InRange:    &opts.VisualMapInRange{Color: line3DColor},
+		}),
 	)
+
 	line3d.AddZAxis("line3D", genLine3dData())
 	return line3d
 }
@@ -41,29 +51,38 @@ func line3DBase() *charts.Line3D {
 func line3DAutoRotate() *charts.Line3D {
 	line3d := charts.NewLine3D()
 	line3d.SetGlobalOptions(
-		charts.TitleOpts{Title: "Line3D-旋转的弹簧"},
-		charts.VisualMapOpts{
+		charts.WithTitleOpts(opts.Title{
+			Title: "Line3D-auto-rotate",
+		}),
+		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
-			InRange:    charts.VMInRange{Color: rangeColor},
 			Max:        30,
-		},
-		charts.Grid3DOpts{
-			ViewControl: charts.ViewControlOpts{AutoRotate: true},
-		},
+			InRange:    &opts.VisualMapInRange{Color: line3DColor},
+		}),
+
+		charts.WithGrid3DOpts(opts.Grid3D{
+			ViewControl: opts.ViewControl{
+				AutoRotate: true,
+			},
+		}),
 	)
+
 	line3d.AddZAxis("line3D", genLine3dData())
 	return line3d
 }
 
-func line3DHandler(w http.ResponseWriter, _ *http.Request) {
-	page := charts.NewPage(orderRouters("line3D")...)
-	page.Add(
+func main() {
+
+	page := components.NewPage()
+	page.AddCharts(
 		line3DBase(),
 		line3DAutoRotate(),
 	)
-	f, err := os.Create(getRenderPath("line3D.html"))
+
+	f, err := os.Create("line3D.html")
 	if err != nil {
 		log.Println(err)
 	}
-	page.Render(w, f)
+	_ = page.Render(io.MultiWriter(os.Stdout, f))
 }
+
