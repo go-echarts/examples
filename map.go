@@ -12,32 +12,32 @@ import (
 )
 
 var (
-	baseMapData = map[string]float32{
-		"北京":  float32(rand.Intn(150)),
-		"上海":  float32(rand.Intn(150)),
-		"广东":  float32(rand.Intn(150)),
-		"辽宁":  float32(rand.Intn(150)),
-		"山东":  float32(rand.Intn(150)),
-		"山西":  float32(rand.Intn(150)),
-		"陕西":  float32(rand.Intn(150)),
-		"新疆":  float32(rand.Intn(150)),
-		"内蒙古": float32(rand.Intn(150)),
+	baseMapData = []opts.MapData{
+		{"北京", float64(rand.Intn(150))},
+		{"上海", float64(rand.Intn(150))},
+		{"广东", float64(rand.Intn(150))},
+		{"辽宁", float64(rand.Intn(150))},
+		{"山东", float64(rand.Intn(150))},
+		{"山西", float64(rand.Intn(150))},
+		{"陕西", float64(rand.Intn(150))},
+		{"新疆", float64(rand.Intn(150))},
+		{"内蒙古", float64(rand.Intn(150))},
 	}
 
-	guangdongMapData = map[string]float32{
-		"深圳市": float32(rand.Intn(150)),
-		"广州市": float32(rand.Intn(150)),
-		"湛江市": float32(rand.Intn(150)),
-		"汕头市": float32(rand.Intn(150)),
-		"东莞市": float32(rand.Intn(150)),
-		"佛山市": float32(rand.Intn(150)),
-		"云浮市": float32(rand.Intn(150)),
-		"肇庆市": float32(rand.Intn(150)),
-		"梅州市": float32(rand.Intn(150)),
+	guangdongMapData = map[string]float64{
+		"深圳市": float64(rand.Intn(150)),
+		"广州市": float64(rand.Intn(150)),
+		"湛江市": float64(rand.Intn(150)),
+		"汕头市": float64(rand.Intn(150)),
+		"东莞市": float64(rand.Intn(150)),
+		"佛山市": float64(rand.Intn(150)),
+		"云浮市": float64(rand.Intn(150)),
+		"肇庆市": float64(rand.Intn(150)),
+		"梅州市": float64(rand.Intn(150)),
 	}
 )
 
-func generateMapData(data map[string]float32) (items []opts.MapData) {
+func generateMapData(data map[string]float64) (items []opts.MapData) {
 	items = make([]opts.MapData, 0)
 	for k, v := range data {
 		items = append(items, opts.MapData{Name: k, Value: v})
@@ -55,7 +55,7 @@ func mapBase() *charts.Map {
 		}),
 	)
 
-	mc.AddSeries("map", generateMapData(baseMapData))
+	mc.AddSeries("map", baseMapData)
 	return mc
 }
 
@@ -69,7 +69,7 @@ func mapShowLabel() *charts.Map {
 		}),
 	)
 
-	mc.AddSeries("map", generateMapData(baseMapData)).
+	mc.AddSeries("map", baseMapData).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
 				Show: true,
@@ -91,7 +91,7 @@ func mapVisualMap() *charts.Map {
 		}),
 	)
 
-	mc.AddSeries("map", generateMapData(baseMapData))
+	mc.AddSeries("map", baseMapData)
 	return mc
 }
 
@@ -130,7 +130,7 @@ func mapTheme() *charts.Map {
 		}),
 	)
 
-	mc.AddSeries("map", generateMapData(baseMapData))
+	mc.AddSeries("map", baseMapData)
 	return mc
 }
 
