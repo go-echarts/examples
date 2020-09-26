@@ -30,7 +30,7 @@ func geoBase() *charts.Geo {
 	geo := charts.NewGeo()
 	geo.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "geo-effectScatter",
+			Title: "geo-basic-example",
 		}),
 		charts.WithGeoComponentOpts(opts.GeoComponent{
 			Map: "china",
