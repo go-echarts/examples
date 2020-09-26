@@ -1,13 +1,14 @@
 package main
 
 import (
-	"github.com/go-echarts/go-echarts/charts"
-	"github.com/go-echarts/go-echarts/components"
-	"github.com/go-echarts/go-echarts/opts"
 	"io"
 	"log"
 	"math/rand"
 	"os"
+
+	"github.com/go-echarts/go-echarts/charts"
+	"github.com/go-echarts/go-echarts/components"
+	"github.com/go-echarts/go-echarts/opts"
 )
 
 var geoData = []opts.GeoData{
