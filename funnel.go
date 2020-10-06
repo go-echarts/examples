@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"math/rand"
 	"os"
 
@@ -58,10 +57,9 @@ func main() {
 		funnelShowLabel(),
 	)
 
-	f, err := os.Create("funnel.html")
+	f, err := os.Create("html/funnel.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
-
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

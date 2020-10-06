@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"math/rand"
 	"os"
 
@@ -130,7 +129,6 @@ func barColor() *charts.Bar {
 			Title: "Bar-set-colors",
 		}),
 		charts.WithColorsOpts(opts.Colors{"blue", "pink"}),
-
 	)
 	bar.SetXAxis(weeks).
 		AddSeries("Category A", generateBarItems()).
@@ -351,9 +349,9 @@ func main() {
 		barMarkLines(),
 		barSize(),
 	)
-	f, err := os.Create("bar.html")
+	f, err := os.Create("html/bar.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

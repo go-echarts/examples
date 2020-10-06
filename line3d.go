@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"math"
 	"os"
 
@@ -79,10 +78,9 @@ func main() {
 		line3DAutoRotate(),
 	)
 
-	f, err := os.Create("line3D.html")
+	f, err := os.Create("html/line3d.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(os.Stdout, f))
 }
-

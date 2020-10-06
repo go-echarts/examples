@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"math/rand"
 	"os"
 
@@ -144,9 +143,9 @@ func main() {
 		mapTheme(),
 	)
 
-	f, err := os.Create("map.html")
+	f, err := os.Create("html/map.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

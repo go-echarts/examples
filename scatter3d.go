@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"math/rand"
 	"os"
 	"time"
@@ -13,7 +12,7 @@ import (
 )
 
 var (
-	dataSeed       = rand.NewSource(time.Now().UnixNano())
+	dataSeed = rand.NewSource(time.Now().UnixNano())
 
 	scatter3DColor = []string{
 		"#313695", "#4575b4", "#74add1", "#abd9e9", "#e0f3f8",
@@ -56,10 +55,9 @@ func main() {
 		scatter3DBase(),
 	)
 
-	f, err := os.Create("scatter3D.html")
+	f, err := os.Create("html/scatter3d.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
-
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

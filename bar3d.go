@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
@@ -163,11 +162,9 @@ func main() {
 		bar3DShading(),
 	)
 
-	f, err := os.Create("bar3D.html")
+	f, err := os.Create("html/bar3d.html")
 	if err != nil {
-		log.Println(err)
-
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
-
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

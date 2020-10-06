@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"math/rand"
 	"os"
 
@@ -180,7 +179,6 @@ func pieInPie() *charts.Pie {
 }
 
 func main() {
-
 	page := components.NewPage()
 	page.AddCharts(
 		pieBase(),
@@ -191,9 +189,9 @@ func main() {
 		pieRoseAreaRadius(),
 		pieInPie(),
 	)
-	f, err := os.Create("pie.html")
+	f, err := os.Create("html/pie.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

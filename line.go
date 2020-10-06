@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"math/rand"
 	"os"
 
@@ -261,9 +260,9 @@ func main() {
 		lineMulti(),
 		lineDemo(),
 	)
-	f, err := os.Create("line.html")
+	f, err := os.Create("html/line.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

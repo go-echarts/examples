@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
@@ -103,10 +102,9 @@ func main() {
 		wcStar(),
 	)
 
-	f, err := os.Create("E:/wordCloud.html")
+	f, err := os.Create("html/wordCloud.html")
 	if err != nil {
-		log.Println(err)
-
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

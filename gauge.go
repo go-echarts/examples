@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"io"
-	"log"
 	"math/rand"
 	"os"
 
@@ -45,10 +44,9 @@ func main() {
 		gaugeTimer(),
 	)
 
-	f, err := os.Create("guage.html")
+	f, err := os.Create("html/guage.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
-
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

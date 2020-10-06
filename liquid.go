@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
@@ -182,10 +181,9 @@ func main() {
 		liquidTriangle(),
 	)
 
-	f, err := os.Create("liquid.html")
+	f, err := os.Create("html/liquid.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
-
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

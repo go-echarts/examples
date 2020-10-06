@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"math/rand"
 	"os"
 
@@ -66,10 +65,9 @@ func main() {
 		esEffectStyle(),
 	)
 
-	f, err := os.Create("effectscatter.html")
+	f, err := os.Create("html/effectscatter.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
-
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

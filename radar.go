@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
@@ -113,7 +112,6 @@ func radarBase() *charts.Radar {
 			SplitArea: &opts.SplitArea{Show: true},
 			SplitLine: &opts.SplitLine{Show: true},
 		}),
-
 	)
 	radar.AddSeries("Beijing", generateRadarItems(radarDataBJ))
 	return radar
@@ -196,7 +194,6 @@ func radarLegendMulti() *charts.Radar {
 				Color: "#eee",
 			},
 		}),
-
 	)
 
 	radar.AddSeries("Beijing", generateRadarItems(radarDataBJ), charts.WithItemStyleOpts(opts.ItemStyle{Color: "#F9713C"})).
@@ -249,13 +246,10 @@ func radarLegendSingle() *charts.Radar {
 	)
 	radar.AddSeries("Beijing", generateRadarItems(radarDataBJ),
 		charts.WithItemStyleOpts(opts.ItemStyle{Color: "#F9713C"})).
-
 		AddSeries("Guangzhou", generateRadarItems(radarDataGZ),
 			charts.WithItemStyleOpts(opts.ItemStyle{Color: "#B3E4A1"})).
-
 		AddSeries("Shanghai", generateRadarItems(radarDataSH),
 			charts.WithItemStyleOpts(opts.ItemStyle{Color: "rgb(238, 197, 102)"})).
-
 		SetSeriesOptions(
 			charts.WithLineStyleOpts(opts.LineStyle{
 				Width:   1,
@@ -276,9 +270,9 @@ func main() {
 		radarLegendMulti(),
 		radarLegendSingle(),
 	)
-	f, err := os.Create("radar.html")
+	f, err := os.Create("html/radar.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

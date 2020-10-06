@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
@@ -67,11 +66,9 @@ func main() {
 		boxPlotBase(),
 		boxPlotMulti(),
 	)
-	f, err := os.Create("boxPlot.html")
+	f, err := os.Create("html/boxplot.html")
 	if err != nil {
-		log.Println(err)
-
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
-
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

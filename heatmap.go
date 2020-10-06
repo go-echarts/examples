@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
@@ -97,11 +96,9 @@ func main() {
 		heatMapBase(),
 	)
 
-	f, err := os.Create("heatMap.html")
+	f, err := os.Create("html/heatmap.html")
 	if err != nil {
-		log.Println(err)
-
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
-
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

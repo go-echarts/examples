@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"math/rand"
 	"os"
 
@@ -95,9 +94,9 @@ func main() {
 		scatterShowLabel(),
 		scatterSplitLine(),
 	)
-	f, err := os.Create("scatter.html")
+	f, err := os.Create("html/scatter.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

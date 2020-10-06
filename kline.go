@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"log"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
@@ -201,7 +200,6 @@ func klineDataZoomBoth() *charts.Kline {
 			End:        100,
 			XAxisIndex: []int{0},
 		}),
-
 	)
 
 	kline.SetXAxis(x).AddSeries("kline", y)
@@ -296,7 +294,6 @@ func klineStyle() *charts.Kline {
 
 func main() {
 	page := components.NewPage()
-
 	page.AddCharts(
 		klineBase(),
 		klineDataZoomInside(),
@@ -305,11 +302,10 @@ func main() {
 		klineStyle(),
 	)
 
-	f, err := os.Create("kline.html")
+	f, err := os.Create("html/kline.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
-
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

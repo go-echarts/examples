@@ -2,13 +2,13 @@ package main
 
 import (
 	"io"
-	"log"
 	"math/rand"
 	"os"
 
 	"github.com/go-echarts/go-echarts/charts"
 	"github.com/go-echarts/go-echarts/components"
 	"github.com/go-echarts/go-echarts/opts"
+	"github.com/go-echarts/go-echarts/types"
 )
 
 var geoData = []opts.GeoData{
@@ -40,7 +40,7 @@ func geoBase() *charts.Geo {
 		}),
 	)
 
-	geo.AddSeries("geo", "effectScatter", geoData,
+	geo.AddSeries("geo", types.ChartEffectScatter, geoData,
 		charts.WithRippleEffectOpts(opts.RippleEffect{
 			Period:    4,
 			Scale:     6,
@@ -67,7 +67,7 @@ func geoGuangdong() *charts.Geo {
 		}),
 	)
 
-	geo.AddSeries("geo", "scatter", guangdongData)
+	geo.AddSeries("geo", types.ChartScatter, guangdongData)
 	return geo
 }
 
@@ -78,9 +78,9 @@ func main() {
 		geoGuangdong(),
 	)
 
-	f, err := os.Create("geo.html")
+	f, err := os.Create("html/geo.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(os.Stdout, f))
 }

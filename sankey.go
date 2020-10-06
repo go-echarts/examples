@@ -86,10 +86,9 @@ func main() {
 		graphEnergy(),
 	)
 
-	f, err := os.Create("sankey.html")
+	f, err := os.Create("html/sankey.html")
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	}
-	_ = page.Render(io.MultiWriter(os.Stdout, f))
-
+	page.Render(io.MultiWriter(os.Stdout, f))
 }
