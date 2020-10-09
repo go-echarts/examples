@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -153,16 +153,18 @@ func parallelMulti() *charts.Parallel {
 	return parallel
 }
 
-func main() {
+type ParallelExamples struct{}
+
+func (ParallelExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		parallelBase(),
 		parallelComponent(),
 		parallelMulti(),
 	)
-	f, err := os.Create("html/parallel.html")
+	f, err := os.Create("examples/html/parallel.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

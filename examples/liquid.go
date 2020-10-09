@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -168,7 +168,9 @@ func liquidTriangle() *charts.Liquid {
 	return liquid
 }
 
-func main() {
+type LiquidExamples struct{}
+
+func (LiquidExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		liquidBase(),
@@ -181,9 +183,9 @@ func main() {
 		liquidTriangle(),
 	)
 
-	f, err := os.Create("html/liquid.html")
+	f, err := os.Create("examples/html/liquid.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

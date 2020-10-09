@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"encoding/json"
@@ -51,7 +51,7 @@ func graphEnergy() *charts.Sankey {
 		}),
 	)
 
-	file, err := ioutil.ReadFile("examples/fixtures/energy.json")
+	file, err := ioutil.ReadFile("fixtures/energy.json")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -79,16 +79,18 @@ func graphEnergy() *charts.Sankey {
 	return sankey
 }
 
-func main() {
+type SankeyExamples struct{}
+
+func (SankeyExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		sankeyBase(),
 		graphEnergy(),
 	)
 
-	f, err := os.Create("html/sankey.html")
+	f, err := os.Create("examples/html/sankey.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

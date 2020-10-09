@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"fmt"
@@ -37,16 +37,18 @@ func gaugeTimer() *charts.Gauge {
 	return gauge
 }
 
-func main() {
+type GaugeExamples struct{}
+
+func (GaugeExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		gaugeBase(),
 		gaugeTimer(),
 	)
 
-	f, err := os.Create("html/guage.html")
+	f, err := os.Create("examples/html/gauge.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

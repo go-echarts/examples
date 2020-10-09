@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -71,16 +71,18 @@ func geoGuangdong() *charts.Geo {
 	return geo
 }
 
-func main() {
+type GeoExamples struct{}
+
+func (GeoExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		geoBase(),
 		geoGuangdong(),
 	)
 
-	f, err := os.Create("html/geo.html")
+	f, err := os.Create("examples/html/geo.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

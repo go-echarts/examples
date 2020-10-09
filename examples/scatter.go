@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -87,16 +87,18 @@ func scatterSplitLine() *charts.Scatter {
 	return scatter
 }
 
-func main() {
+type ScatterExamples struct{}
+
+func (ScatterExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		scatterBase(),
 		scatterShowLabel(),
 		scatterSplitLine(),
 	)
-	f, err := os.Create("html/scatter.html")
+	f, err := os.Create("examples/html/scatter.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

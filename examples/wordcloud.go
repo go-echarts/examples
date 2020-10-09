@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -94,7 +94,9 @@ func wcStar() *charts.WordCloud {
 	return wc
 }
 
-func main() {
+type WordcloudExamples struct{}
+
+func (WordcloudExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		wcBase(),
@@ -102,9 +104,9 @@ func main() {
 		wcStar(),
 	)
 
-	f, err := os.Create("html/wordCloud.html")
+	f, err := os.Create("examples/html/wordcloud.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -70,17 +70,18 @@ func line3DAutoRotate() *charts.Line3D {
 	return line3d
 }
 
-func main() {
+type Line3dExamples struct{}
 
+func (Line3dExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		line3DBase(),
 		line3DAutoRotate(),
 	)
 
-	f, err := os.Create("html/line3d.html")
+	f, err := os.Create("examples/html/line3d.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -292,7 +292,9 @@ func klineStyle() *charts.Kline {
 	return kline
 }
 
-func main() {
+type KlineExamples struct{}
+
+func (KlineExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		klineBase(),
@@ -302,10 +304,10 @@ func main() {
 		klineStyle(),
 	)
 
-	f, err := os.Create("html/kline.html")
+	f, err := os.Create("examples/html/kline.html")
 	if err != nil {
 		panic(err)
 
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

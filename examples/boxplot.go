@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -60,15 +60,17 @@ func boxPlotMulti() *charts.BoxPlot {
 	return bp
 }
 
-func main() {
+type BoxplotExamples struct{}
+
+func (BoxplotExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		boxPlotBase(),
 		boxPlotMulti(),
 	)
-	f, err := os.Create("html/boxplot.html")
+	f, err := os.Create("examples/html/boxplot.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

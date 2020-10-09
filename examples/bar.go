@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -312,6 +312,25 @@ func barMarkLines() *charts.Bar {
 	return bar
 }
 
+func barOverlap() *charts.Bar {
+	bar := charts.NewBar()
+	bar.SetGlobalOptions(
+		charts.WithTitleOpts(opts.Title{
+			Title: "Bar-overlap",
+		}),
+	)
+
+	bar.SetXAxis(weeks).
+		AddSeries("Category A", generateBarItems()).
+		AddSeries("Category B", generateBarItems()).
+		SetSeriesOptions(charts.WithMarkLineNameTypeItemOpts(
+			opts.MarkLineNameTypeItem{Name: "Maximum", Type: "max"},
+			opts.MarkLineNameTypeItem{Name: "Avg", Type: "average"},
+		))
+	//bar.Overlap(lineBase())
+	return bar
+}
+
 func barSize() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
@@ -329,7 +348,13 @@ func barSize() *charts.Bar {
 	return bar
 }
 
-func main() {
+type Exampler interface {
+	Examples()
+}
+
+type BarExamples struct{}
+
+func (BarExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		barBasic(),
@@ -347,11 +372,12 @@ func main() {
 		barStack(),
 		barMarkPoints(),
 		barMarkLines(),
+		barOverlap(),
 		barSize(),
 	)
-	f, err := os.Create("html/bar.html")
+	f, err := os.Create("examples/html/bar.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

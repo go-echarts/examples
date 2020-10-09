@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -153,7 +153,9 @@ func bar3DShading() *charts.Bar3D {
 	return bar3d
 }
 
-func main() {
+type Bar3dExamples struct{}
+
+func (Bar3dExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		bar3DBase(),
@@ -162,9 +164,9 @@ func main() {
 		bar3DShading(),
 	)
 
-	f, err := os.Create("html/bar3d.html")
+	f, err := os.Create("examples/html/bar3d.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

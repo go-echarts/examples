@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -157,15 +157,17 @@ func themeRiverTime() *charts.ThemeRiver {
 	return tr
 }
 
-func main() {
+type ThemeriverExamples struct{}
+
+func (ThemeriverExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		themeRiverTime(),
 	)
 
-	f, err := os.Create("html/themeriver.html")
+	f, err := os.Create("examples/html/themeriver.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

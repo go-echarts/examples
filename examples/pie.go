@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -178,7 +178,9 @@ func pieInPie() *charts.Pie {
 	return pie
 }
 
-func main() {
+type PieExamples struct{}
+
+func (PieExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		pieBase(),
@@ -189,9 +191,9 @@ func main() {
 		pieRoseAreaRadius(),
 		pieInPie(),
 	)
-	f, err := os.Create("html/pie.html")
+	f, err := os.Create("examples/html/pie.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -246,7 +246,9 @@ func lineDemo() *charts.Line {
 	return line
 }
 
-func main() {
+type LineExamples struct{}
+
+func (LineExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		lineBase(),
@@ -260,9 +262,9 @@ func main() {
 		lineMulti(),
 		lineDemo(),
 	)
-	f, err := os.Create("html/line.html")
+	f, err := os.Create("examples/html/line.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

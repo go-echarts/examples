@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -133,7 +133,9 @@ func mapTheme() *charts.Map {
 	return mc
 }
 
-func main() {
+type MapExamples struct{}
+
+func (MapExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		mapBase(),
@@ -143,9 +145,9 @@ func main() {
 		mapTheme(),
 	)
 
-	f, err := os.Create("html/map.html")
+	f, err := os.Create("examples/html/map.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

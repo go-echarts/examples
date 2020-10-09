@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -58,16 +58,18 @@ func esEffectStyle() *charts.EffectScatter {
 	return es
 }
 
-func main() {
+type EffectscatterExamples struct{}
+
+func (EffectscatterExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		esBase(),
 		esEffectStyle(),
 	)
 
-	f, err := os.Create("html/effectscatter.html")
+	f, err := os.Create("examples/html/effectscatter.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

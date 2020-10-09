@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -90,15 +90,17 @@ func heatMapBase() *charts.HeatMap {
 	return hm
 }
 
-func main() {
+type HeatmapExamples struct{}
+
+func (HeatmapExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		heatMapBase(),
 	)
 
-	f, err := os.Create("html/heatmap.html")
+	f, err := os.Create("examples/html/heatmap.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

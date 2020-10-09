@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -49,15 +49,17 @@ func scatter3DBase() *charts.Scatter3D {
 	return scatter3d
 }
 
-func main() {
+type Scatter3dExamples struct{}
+
+func (Scatter3dExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		scatter3DBase(),
 	)
 
-	f, err := os.Create("html/scatter3d.html")
+	f, err := os.Create("examples/html/scatter3d.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

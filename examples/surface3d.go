@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -78,16 +78,18 @@ func surface3DRose() *charts.Surface3D {
 	return surface3d
 }
 
-func main() {
+type Surface3dExamples struct{}
+
+func (Surface3dExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		surface3DBase(),
 		surface3DRose(),
 	)
 
-	f, err := os.Create("html/surface3d.html")
+	f, err := os.Create("examples/html/surface3d.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

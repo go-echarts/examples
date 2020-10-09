@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -50,16 +50,18 @@ func funnelShowLabel() *charts.Funnel {
 	return funnel
 }
 
-func main() {
+type FunnelExamples struct{}
+
+func (FunnelExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		funnelBase(),
 		funnelShowLabel(),
 	)
 
-	f, err := os.Create("html/funnel.html")
+	f, err := os.Create("examples/html/funnel.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

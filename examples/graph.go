@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"encoding/json"
@@ -85,7 +85,7 @@ func graphNpmDep() *charts.Graph {
 			Title: "Graph-demo-npm-dependencies",
 		}))
 
-	f, err := ioutil.ReadFile("examples/fixtures/npmdepgraph.json")
+	f, err := ioutil.ReadFile("fixtures/npmdepgraph.json")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -121,7 +121,9 @@ func graphNpmDep() *charts.Graph {
 	return graph
 }
 
-func main() {
+type GraphExamples struct{}
+
+func (GraphExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		graphBase(),
@@ -129,10 +131,10 @@ func main() {
 		graphNpmDep(),
 	)
 
-	f, err := os.Create("html/graph.html")
+	f, err := os.Create("examples/html/graph.html")
 	if err != nil {
 		panic(err)
 
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }

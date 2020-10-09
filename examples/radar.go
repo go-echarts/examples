@@ -1,4 +1,4 @@
-package main
+package examples
 
 import (
 	"io"
@@ -262,7 +262,9 @@ func radarLegendSingle() *charts.Radar {
 	return radar
 }
 
-func main() {
+type RadarExamples struct{}
+
+func (RadarExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		radarBase(),
@@ -270,9 +272,9 @@ func main() {
 		radarLegendMulti(),
 		radarLegendSingle(),
 	)
-	f, err := os.Create("html/radar.html")
+	f, err := os.Create("examples/html/radar.html")
 	if err != nil {
 		panic(err)
 	}
-	page.Render(io.MultiWriter(os.Stdout, f))
+	page.Render(io.MultiWriter(f))
 }
