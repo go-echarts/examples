@@ -185,6 +185,22 @@ func lineSmoothArea() *charts.Line {
 	return line
 }
 
+func lineOverlap() *charts.Line {
+	line := charts.NewLine()
+	line.SetGlobalOptions(
+		charts.WithTitleOpts(opts.Title{
+			Title:    "Line-overlap",
+			Subtitle: "This is the subtitle.",
+		}),
+	)
+
+	line.SetXAxis(fruits).
+		AddSeries("Category A", generateLineItems())
+	line.Overlap(esEffectStyle())
+	line.Overlap(scatterBase())
+	return line
+}
+
 func lineMulti() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
@@ -259,6 +275,7 @@ func (LineExamples) Examples() {
 		lineSmooth(),
 		lineArea(),
 		lineSmoothArea(),
+		lineOverlap(),
 		lineMulti(),
 		lineDemo(),
 	)

@@ -327,7 +327,8 @@ func barOverlap() *charts.Bar {
 			opts.MarkLineNameTypeItem{Name: "Maximum", Type: "max"},
 			opts.MarkLineNameTypeItem{Name: "Avg", Type: "average"},
 		))
-	//bar.Overlap(lineBase())
+	bar.Overlap(lineBase())
+	bar.Overlap(scatterBase())
 	return bar
 }
 
