@@ -4,9 +4,9 @@ import (
 	"io"
 	"os"
 
-	"github.com/go-echarts/go-echarts/charts"
-	"github.com/go-echarts/go-echarts/components"
-	"github.com/go-echarts/go-echarts/opts"
+	"github.com/go-echarts/go-echarts/v2/charts"
+	"github.com/go-echarts/go-echarts/v2/components"
+	"github.com/go-echarts/go-echarts/v2/opts"
 )
 
 func genLiquidItems(data []float32) []opts.LiquidData {

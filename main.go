@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/go-echarts/go-echarts-examples/examples"
 	"log"
 	"net/http"
+
+	"github.com/go-echarts/go-echarts-examples/examples"
 )
 
 func logRequest(handler http.Handler) http.Handler {
@@ -46,6 +47,6 @@ func main() {
 	}
 
 	fs := http.FileServer(http.Dir("examples/html"))
-	log.Println("running server at :8089")
-	log.Fatal(http.ListenAndServe(":8089", logRequest(fs)))
+	log.Println("running server at localhost:8089")
+	log.Fatal(http.ListenAndServe("localhost:8089", logRequest(fs)))
 }
