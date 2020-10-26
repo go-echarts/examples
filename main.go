@@ -34,6 +34,7 @@ func main() {
 		examples.ParallelExamples{},
 		examples.PieExamples{},
 		examples.RadarExamples{},
+		examples.CustomizeExamples{},
 		examples.SankeyExamples{},
 		examples.ScatterExamples{},
 		examples.Scatter3dExamples{},
