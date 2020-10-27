@@ -23,11 +23,7 @@ var (
 func genScatter3dData() [][3]int {
 	data := make([][3]int, 0)
 	for i := 0; i < 80; i++ {
-		data = append(data, [3]int{
-			int(dataSeed.Int63()) % 100,
-			int(dataSeed.Int63()) % 100,
-			int(dataSeed.Int63()) % 100,
-		})
+		data = append(data, [3]int{int(dataSeed.Int63()) % 100, int(dataSeed.Int63()) % 100, int(dataSeed.Int63()) % 100})
 	}
 	return data
 }

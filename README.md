@@ -10,6 +10,6 @@ $ git clone https://github.com/go-echarts/examples.git
 $ cd examples && go run .
 ``` 
 
-Now visit http://localhost:8089/bar.html in your browser and there are variety of charts, such as `bar`, `line`, `pie`, etc.
+Now visit http://localhost:8089 in your browser and there are variety of charts, such as `bar`, `line`, `pie`, `radaer`, etc.
 
 for more charts detailed, please refer to ./examples folder.

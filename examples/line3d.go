@@ -21,9 +21,9 @@ func genLine3dData() [][3]float64 {
 		t := float64(i) / 1000
 		data = append(data,
 			[3]float64{
-				(1 + 0.25*math.Cos(75*float64(t))) * math.Cos(float64(t)),
-				(1 + 0.25*math.Cos(75*float64(t))) * math.Sin(float64(t)),
-				float64(t) + 2.0*math.Sin(75.0*float64(t)),
+				(1 + 0.25*math.Cos(75*t)) * math.Cos(t),
+				(1 + 0.25*math.Cos(75*t)) * math.Sin(t),
+				t + 2.0*math.Sin(75.0*t),
 			},
 		)
 	}
