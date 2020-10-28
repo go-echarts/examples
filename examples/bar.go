@@ -75,6 +75,13 @@ func barSetToolbox() *charts.Bar {
 					Type:  "png",
 					Title: "Anything you want",
 				},
+				DataView: &opts.ToolBoxFeatureDataView{
+					Show:  true,
+					Title: "DataView",
+					// set the language
+					// Chinese version: ["数据视图", "关闭", "刷新"]
+					Lang: []string{"data view", "turn off", "refresh"},
+				},
 			}},
 		),
 	)
