@@ -2,7 +2,7 @@ module github.com/go-echarts/go-echarts-examples
 
 go 1.15
 
-require github.com/go-echarts/go-echarts/v2 v2.0.0
+require github.com/go-echarts/go-echarts/v2 v2.0.1
 
 // dev mode
 //replace (
