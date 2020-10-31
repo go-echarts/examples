@@ -60,6 +60,25 @@ func barTitle() *charts.Bar {
 	return bar
 }
 
+func barTooltip() *charts.Bar {
+	bar := charts.NewBar()
+	bar.SetGlobalOptions(
+		charts.WithTitleOpts(opts.Title{
+			Title: "Bar-with-tooltip",
+		}),
+		charts.WithTooltipOpts(opts.Tooltip{
+			Show: true,
+		}),
+		charts.WithLegendOpts(opts.Legend{
+			Right: "80%",
+		}),
+	)
+	bar.SetXAxis(weeks).
+		AddSeries("Category A", generateBarItems()).
+		AddSeries("Category B", generateBarItems())
+	return bar
+}
+
 func barSetToolbox() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
@@ -367,6 +386,7 @@ func (BarExamples) Examples() {
 	page.AddCharts(
 		barBasic(),
 		barTitle(),
+		barTooltip(),
 		barSetToolbox(),
 		barShowLabel(),
 		barXYName(),
