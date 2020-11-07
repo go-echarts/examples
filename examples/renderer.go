@@ -2,11 +2,8 @@ package examples
 
 import (
 	"bytes"
-	"fmt"
-	"html/template"
 	"io"
 	"os"
-	"regexp"
 
 	"github.com/go-echarts/go-echarts/v2/charts"
 	"github.com/go-echarts/go-echarts/v2/opts"
@@ -31,20 +28,6 @@ var HeaderTpl = `
 {{ end }}
 `
 
-// MustTemplate
-func MustTemplate(contents []string) *template.Template {
-	tpl := template.Must(template.New("chart").Parse(contents[0])).Funcs(template.FuncMap{
-		"safeJS": func(s interface{}) template.JS {
-			return template.JS(fmt.Sprint(s))
-		},
-	})
-
-	for _, cont := range contents[1:] {
-		tpl = template.Must(tpl.Parse(cont))
-	}
-	return tpl
-}
-
 type myOwnRender struct {
 	c      interface{}
 	before []func()
@@ -60,17 +43,14 @@ func (r *myOwnRender) Render(w io.Writer) error {
 	}
 
 	contents := []string{HeaderTpl, tpls.BaseTpl, tpls.ChartTpl}
-	tpl := MustTemplate(contents)
+	tpl := render.MustTemplate("chart", contents)
 
 	var buf bytes.Buffer
 	if err := tpl.ExecuteTemplate(&buf, "chart", r.c); err != nil {
 		return err
 	}
 
-	pat := regexp.MustCompile(`(__x__")|("__x__)|(__x__)`)
-	content := pat.ReplaceAll(buf.Bytes(), []byte(""))
-
-	_, err := w.Write(content)
+	_, err := w.Write(buf.Bytes())
 	return err
 }
 
