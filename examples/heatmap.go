@@ -65,7 +65,7 @@ func heatMapBase() *charts.HeatMap {
 	hm := charts.NewHeatMap()
 	hm.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "HeatMap-example",
+			Title: "basic heatmap example",
 		}),
 		charts.WithXAxisOpts(opts.XAxis{
 			Type:      "category",

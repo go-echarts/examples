@@ -44,7 +44,7 @@ func wcBase() *charts.WordCloud {
 	wc := charts.NewWordCloud()
 	wc.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "WordCloud-basic-example",
+			Title: "basic WordCloud example",
 		}))
 
 	wc.AddSeries("wordcloud", generateWCData(wcData)).
@@ -60,9 +60,7 @@ func wcBase() *charts.WordCloud {
 func wcCardioid() *charts.WordCloud {
 	wc := charts.NewWordCloud()
 	wc.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "WordCloud-shape-cardioid",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "cardioid shape"}),
 	)
 
 	wc.AddSeries("wordcloud", generateWCData(wcData)).
@@ -80,7 +78,7 @@ func wcStar() *charts.WordCloud {
 	wc := charts.NewWordCloud()
 	wc.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "WordCloud-shape-star",
+			Title: "star shape",
 		}))
 
 	wc.AddSeries("wordcloud", generateWCData(wcData)).

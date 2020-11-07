@@ -26,9 +26,7 @@ func generatePieItems() []opts.PieData {
 func pieBase() *charts.Pie {
 	pie := charts.NewPie()
 	pie.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Pie-basic-example",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "basic pie example"}),
 	)
 
 	pie.AddSeries("pie", generatePieItems())
@@ -38,9 +36,7 @@ func pieBase() *charts.Pie {
 func pieShowLabel() *charts.Pie {
 	pie := charts.NewPie()
 	pie.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Pie-with-label-opts",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "label options"}),
 	)
 
 	pie.AddSeries("pie", generatePieItems()).
@@ -56,9 +52,7 @@ func pieShowLabel() *charts.Pie {
 func pieRadius() *charts.Pie {
 	pie := charts.NewPie()
 	pie.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Pie-Radius",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "Radius style"}),
 	)
 
 	pie.AddSeries("pie", generatePieItems()).
@@ -78,7 +72,7 @@ func pieRoseArea() *charts.Pie {
 	pie := charts.NewPie()
 	pie.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Pie-Rose(Area)",
+			Title: "Rose(Area)",
 		}),
 	)
 
@@ -100,7 +94,7 @@ func pieRoseRadius() *charts.Pie {
 	pie := charts.NewPie()
 	pie.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Pie-Rose(Radius)",
+			Title: "Rose(Radius)",
 		}),
 	)
 
@@ -122,7 +116,7 @@ func pieRoseAreaRadius() *charts.Pie {
 	pie := charts.NewPie()
 	pie.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Pie-Rose(Area/Radius)",
+			Title: "Rose(Area/Radius)",
 		}),
 	)
 
@@ -154,7 +148,7 @@ func pieInPie() *charts.Pie {
 	pie := charts.NewPie()
 	pie.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Pie-in-pie",
+			Title: "pie in pie",
 		}),
 	)
 

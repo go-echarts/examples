@@ -148,7 +148,7 @@ func klineDataZoomInside() *charts.Kline {
 
 	kline.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Kline-DataZoom(inside)",
+			Title: "DataZoom(inside)",
 		}),
 		charts.WithXAxisOpts(opts.XAxis{
 			SplitNumber: 20,
@@ -180,7 +180,7 @@ func klineDataZoomBoth() *charts.Kline {
 
 	kline.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Kline-DataZoom(inside&slider)",
+			Title: "DataZoom(inside&slider)",
 		}),
 		charts.WithXAxisOpts(opts.XAxis{
 			SplitNumber: 20,
@@ -218,7 +218,7 @@ func klineDataZoomYAxis() *charts.Kline {
 
 	kline.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Kline-DataZoom(yAxis)",
+			Title: "DataZoom(yAxis)",
 		}),
 		charts.WithXAxisOpts(opts.XAxis{
 			SplitNumber: 20,
@@ -250,7 +250,7 @@ func klineStyle() *charts.Kline {
 
 	kline.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Kline-more-style",
+			Title: "different style",
 		}),
 		charts.WithXAxisOpts(opts.XAxis{
 			SplitNumber: 20,

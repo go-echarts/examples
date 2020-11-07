@@ -105,7 +105,7 @@ func radarBase() *charts.Radar {
 	radar := charts.NewRadar()
 	radar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Radar-basic-example",
+			Title: "basic radar example",
 		}),
 		charts.WithRadarComponentOpts(opts.RadarComponent{
 			Indicator: indicators,
@@ -121,7 +121,7 @@ func radarStyle() *charts.Radar {
 	radar := charts.NewRadar()
 	radar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title:      "Radar-with-style-opts",
+			Title:      "style options",
 			Right:      "center",
 			TitleStyle: &opts.TextStyle{Color: "#eee"},
 		}),
@@ -168,7 +168,7 @@ func radarLegendMulti() *charts.Radar {
 	radar := charts.NewRadar()
 	radar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Radar-Legend(Multi)",
+			Title: "Legend(Multi)",
 			Right: "center",
 			TitleStyle: &opts.TextStyle{
 				Color: "#eee",
@@ -214,9 +214,8 @@ func radarLegendMulti() *charts.Radar {
 func radarLegendSingle() *charts.Radar {
 	radar := charts.NewRadar()
 	radar.SetGlobalOptions(
-
 		charts.WithTitleOpts(opts.Title{
-			Title: "Radar-Legend(Single)",
+			Title: "Legend(Single)",
 			Right: "center",
 			TitleStyle: &opts.TextStyle{
 				Color: "#eee",
@@ -251,13 +250,8 @@ func radarLegendSingle() *charts.Radar {
 		AddSeries("Shanghai", generateRadarItems(radarDataSH),
 			charts.WithItemStyleOpts(opts.ItemStyle{Color: "rgb(238, 197, 102)"})).
 		SetSeriesOptions(
-			charts.WithLineStyleOpts(opts.LineStyle{
-				Width:   1,
-				Opacity: 0.5,
-			}),
-			charts.WithAreaStyleOpts(opts.AreaStyle{
-				Opacity: 0.1,
-			}),
+			charts.WithLineStyleOpts(opts.LineStyle{Width: 1, Opacity: 0.5}),
+			charts.WithAreaStyleOpts(opts.AreaStyle{Opacity: 0.1}),
 		)
 	return radar
 }

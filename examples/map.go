@@ -12,15 +12,15 @@ import (
 
 var (
 	baseMapData = []opts.MapData{
-		{"北京", float64(rand.Intn(150))},
-		{"上海", float64(rand.Intn(150))},
-		{"广东", float64(rand.Intn(150))},
-		{"辽宁", float64(rand.Intn(150))},
-		{"山东", float64(rand.Intn(150))},
-		{"山西", float64(rand.Intn(150))},
-		{"陕西", float64(rand.Intn(150))},
-		{"新疆", float64(rand.Intn(150))},
-		{"内蒙古", float64(rand.Intn(150))},
+		{Name: "北京", Value: float64(rand.Intn(150))},
+		{Name: "上海", Value: float64(rand.Intn(150))},
+		{Name: "广东", Value: float64(rand.Intn(150))},
+		{Name: "辽宁", Value: float64(rand.Intn(150))},
+		{Name: "山东", Value: float64(rand.Intn(150))},
+		{Name: "山西", Value: float64(rand.Intn(150))},
+		{Name: "陕西", Value: float64(rand.Intn(150))},
+		{Name: "新疆", Value: float64(rand.Intn(150))},
+		{Name: "内蒙古", Value: float64(rand.Intn(150))},
 	}
 
 	guangdongMapData = map[string]float64{
@@ -47,11 +47,8 @@ func generateMapData(data map[string]float64) (items []opts.MapData) {
 func mapBase() *charts.Map {
 	mc := charts.NewMap()
 	mc.RegisterMapType("china")
-
 	mc.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Map-example",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "basic map example"}),
 	)
 
 	mc.AddSeries("map", baseMapData)
@@ -61,11 +58,8 @@ func mapBase() *charts.Map {
 func mapShowLabel() *charts.Map {
 	mc := charts.NewMap()
 	mc.RegisterMapType("china")
-
 	mc.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Map-show-label",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "show label"}),
 	)
 
 	mc.AddSeries("map", baseMapData).
@@ -80,10 +74,9 @@ func mapShowLabel() *charts.Map {
 func mapVisualMap() *charts.Map {
 	mc := charts.NewMap()
 	mc.RegisterMapType("china")
-
 	mc.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Map-VisualMap",
+			Title: "VisualMap",
 		}),
 		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
@@ -97,10 +90,9 @@ func mapVisualMap() *charts.Map {
 func mapRegion() *charts.Map {
 	mc := charts.NewMap()
 	mc.RegisterMapType("广东")
-
 	mc.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Map-religion-Guangdong",
+			Title: "Guangdong province",
 		}),
 		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
@@ -115,7 +107,6 @@ func mapRegion() *charts.Map {
 func mapTheme() *charts.Map {
 	mc := charts.NewMap()
 	mc.RegisterMapType("china")
-
 	mc.SetGlobalOptions(
 		charts.WithInitializationOpts(opts.Initialization{
 			Theme: "macarons",

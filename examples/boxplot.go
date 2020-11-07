@@ -32,9 +32,7 @@ func generateBoxPlotItems(boxPlotData [][]int) []opts.BoxPlotData {
 func boxPlotBase() *charts.BoxPlot {
 	bp := charts.NewBoxPlot()
 	bp.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "BoxPlot-basic-example",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "basic boxplot example"}),
 	)
 
 	bp.SetXAxis(bpX).AddSeries("boxplot", generateBoxPlotItems(bpY))
@@ -44,14 +42,12 @@ func boxPlotBase() *charts.BoxPlot {
 func boxPlotMulti() *charts.BoxPlot {
 	bp := charts.NewBoxPlot()
 	bp.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "BoxPlot-Multi-Series",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "boxplot with multi-series"}),
 	)
 
 	bp.SetXAxis(bpX[:2]).
-		AddSeries("boxplot1", generateBoxPlotItems(bpY[:2])).
-		AddSeries("boxplot2", generateBoxPlotItems(bpY[2:]))
+		AddSeries("series1", generateBoxPlotItems(bpY[:2])).
+		AddSeries("series2", generateBoxPlotItems(bpY[2:]))
 	return bp
 }
 

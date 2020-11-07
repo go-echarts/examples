@@ -34,10 +34,7 @@ func generateLineData(data []float32) []opts.LineData {
 func lineBase() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title:    "Line-basic-example",
-			Subtitle: "This is the subtitle.",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "basic line example", Subtitle: "This is the subtitle."}),
 	)
 
 	line.SetXAxis(fruits).
@@ -49,7 +46,7 @@ func lineShowLabel() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title:    "Line-with-title/label-opts",
+			Title:    "title and label options",
 			Subtitle: "go-echarts is an awesome chart library written in Golang",
 			Link:     "https://github.com/go-echarts/go-echarts",
 		}),
@@ -69,7 +66,7 @@ func lineMarkPoint() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Line-markpoint",
+			Title: "markpoint options",
 		}),
 	)
 
@@ -90,7 +87,7 @@ func lineSplitLine() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Line-splitline",
+			Title: "splitline options",
 		}),
 		charts.WithYAxisOpts(opts.YAxis{
 			SplitLine: &opts.SplitLine{
@@ -110,7 +107,7 @@ func lineStep() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Line-step",
+			Title: "step style",
 		}),
 	)
 
@@ -127,7 +124,7 @@ func lineSmooth() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Line-smooth",
+			Title: "smooth style",
 		}),
 	)
 
@@ -144,7 +141,7 @@ func lineArea() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Line-area",
+			Title: "area options",
 		}),
 	)
 
@@ -165,9 +162,7 @@ func lineArea() *charts.Line {
 func lineSmoothArea() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Line-smooth-area",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "smooth area"}),
 	)
 
 	line.SetXAxis(fruits).AddSeries("Category A", generateLineItems()).
@@ -188,10 +183,7 @@ func lineSmoothArea() *charts.Line {
 func lineOverlap() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title:    "Line-overlap",
-			Subtitle: "This is the subtitle.",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "overlap rect-charts"}),
 	)
 
 	line.SetXAxis(fruits).
@@ -205,7 +197,7 @@ func lineMulti() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Line-multi-lines",
+			Title: "multi lines",
 		}),
 		charts.WithInitializationOpts(opts.Initialization{
 			Theme: "shine",

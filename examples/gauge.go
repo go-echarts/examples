@@ -14,7 +14,7 @@ import (
 func gaugeBase() *charts.Gauge {
 	gauge := charts.NewGauge()
 	gauge.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{Title: "Gauge-example"}),
+		charts.WithTitleOpts(opts.Title{Title: "basic Gauge example"}),
 	)
 
 	gauge.AddSeries("ProjectA", []opts.GaugeData{{Name: "Work progress", Value: rand.Intn(50)}})
@@ -24,7 +24,7 @@ func gaugeBase() *charts.Gauge {
 func gaugeTimer() *charts.Gauge {
 	gauge := charts.NewGauge()
 	gauge.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{Title: "Gauge-timer"}),
+		charts.WithTitleOpts(opts.Title{Title: "javascript timer"}),
 	)
 
 	gauge.AddSeries("ProjectB", []opts.GaugeData{{Name: "Work progress", Value: rand.Intn(50)}})

@@ -90,8 +90,7 @@ var (
 		{Dim: 4, Name: "CO"},
 		{Dim: 5, Name: "NO2"},
 		{Dim: 6, Name: "SO2"},
-		{Dim: 7, Name: "Level", Type: "category",
-			Data: []string{"Good", "Moderate", "Lightly", "Moderately", "Heavily", "Severely"}},
+		{Dim: 7, Name: "Level", Type: "category", Data: []string{"Good", "Moderate", "Lightly", "Moderately", "Heavily", "Severely"}},
 	}
 )
 
@@ -107,7 +106,7 @@ func parallelBase() *charts.Parallel {
 	parallel := charts.NewParallel()
 	parallel.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Parallel-basic-example",
+			Title: "basic Parallel example",
 		}),
 		charts.WithParallelAxisList(parallelAxisList),
 		charts.WithLegendOpts(opts.Legend{Show: true}),
@@ -121,7 +120,7 @@ func parallelComponent() *charts.Parallel {
 	parallel := charts.NewParallel()
 	parallel.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Parallel-with-Component",
+			Title: "with Component",
 		}),
 		charts.WithParallelComponentOpts(opts.ParallelComponent{
 			Left:   "15%",
@@ -141,7 +140,7 @@ func parallelMulti() *charts.Parallel {
 	parallel := charts.NewParallel()
 	parallel.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Parallel-Multi-Series",
+			Title: "Multi Series",
 		}),
 		charts.WithLegendOpts(opts.Legend{Show: true}),
 		charts.WithParallelAxisList(parallelAxisList),

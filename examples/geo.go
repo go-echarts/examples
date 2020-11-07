@@ -12,26 +12,24 @@ import (
 )
 
 var geoData = []opts.GeoData{
-	{"北京", []float64{116.40, 39.90, float64(rand.Intn(100))}},
-	{"上海", []float64{121.47, 31.23, float64(rand.Intn(100))}},
-	{"重庆", []float64{106.55, 29.56, float64(rand.Intn(100))}},
-	{"武汉", []float64{114.31, 30.52, float64(rand.Intn(100))}},
-	{"台湾", []float64{121.30, 25.03, float64(rand.Intn(100))}},
-	{"香港", []float64{114.17, 22.28, float64(rand.Intn(100))}},
+	{Name: "北京", Value: []float64{116.40, 39.90, float64(rand.Intn(100))}},
+	{Name: "上海", Value: []float64{121.47, 31.23, float64(rand.Intn(100))}},
+	{Name: "重庆", Value: []float64{106.55, 29.56, float64(rand.Intn(100))}},
+	{Name: "武汉", Value: []float64{114.31, 30.52, float64(rand.Intn(100))}},
+	{Name: "台湾", Value: []float64{121.30, 25.03, float64(rand.Intn(100))}},
+	{Name: "香港", Value: []float64{114.17, 22.28, float64(rand.Intn(100))}},
 }
 
 var guangdongData = []opts.GeoData{
-	{"汕头", []float64{116.69, 23.39, float64(rand.Intn(100))}},
-	{"深圳", []float64{114.07, 22.62, float64(rand.Intn(100))}},
-	{"广州", []float64{113.23, 23.16, float64(rand.Intn(100))}},
+	{Name: "汕头", Value: []float64{116.69, 23.39, float64(rand.Intn(100))}},
+	{Name: "深圳", Value: []float64{114.07, 22.62, float64(rand.Intn(100))}},
+	{Name: "广州", Value: []float64{113.23, 23.16, float64(rand.Intn(100))}},
 }
 
 func geoBase() *charts.Geo {
 	geo := charts.NewGeo()
 	geo.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "geo-basic-example",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "basic geo example"}),
 		charts.WithGeoComponentOpts(opts.GeoComponent{
 			Map: "china",
 			ItemStyle: opts.ItemStyle{
@@ -53,9 +51,7 @@ func geoBase() *charts.Geo {
 func geoGuangdong() *charts.Geo {
 	geo := charts.NewGeo()
 	geo.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "geo-Guangdong",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "Guangdong province"}),
 		charts.WithGeoComponentOpts(opts.GeoComponent{
 			Map: "广东",
 		}),

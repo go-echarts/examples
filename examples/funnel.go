@@ -22,9 +22,7 @@ func genFunnelKvItems() []opts.FunnelData {
 func funnelBase() *charts.Funnel {
 	funnel := charts.NewFunnel()
 	funnel.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Funnel-basic-example",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "basic funnel example"}),
 	)
 
 	funnel.AddSeries("Analytics", genFunnelKvItems())
@@ -35,9 +33,7 @@ func funnelBase() *charts.Funnel {
 func funnelShowLabel() *charts.Funnel {
 	funnel := charts.NewFunnel()
 	funnel.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Funnel-show-label",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "show label"}),
 	)
 
 	funnel.AddSeries("Analytics", genFunnelKvItems()).

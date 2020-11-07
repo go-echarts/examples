@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"log"
 	"os"
 
 	"github.com/go-echarts/go-echarts/v2/charts"
@@ -38,10 +37,8 @@ func genLinks() []opts.GraphLink {
 func graphBase() *charts.Graph {
 	graph := charts.NewGraph()
 	graph.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Graph-basic-example",
-		}))
-
+		charts.WithTitleOpts(opts.Title{Title: "basic graph example"}),
+	)
 	graph.AddSeries("graph", graphNodes, genLinks(),
 		charts.WithGraphChartOpts(
 			opts.GraphChart{
@@ -56,9 +53,8 @@ func graphBase() *charts.Graph {
 func graphCircle() *charts.Graph {
 	graph := charts.NewGraph()
 	graph.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Graph-layout-Circular",
-		}))
+		charts.WithTitleOpts(opts.Title{Title: "Circular layout"}),
+	)
 
 	graph.AddSeries("graph", graphNodes, genLinks()).
 		SetSeriesOptions(
@@ -82,12 +78,12 @@ func graphNpmDep() *charts.Graph {
 	graph := charts.NewGraph()
 	graph.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Graph-demo-npm-dependencies",
+			Title: "npm dependencies demo",
 		}))
 
 	f, err := ioutil.ReadFile("fixtures/npmdepgraph.json")
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	type Data struct {

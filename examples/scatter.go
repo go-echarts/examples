@@ -30,9 +30,7 @@ func generateScatterItems() []opts.ScatterData {
 func scatterBase() *charts.Scatter {
 	scatter := charts.NewScatter()
 	scatter.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Scatter-basic-example",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "basic scatter example"}),
 	)
 
 	scatter.SetXAxis(sports).
@@ -46,7 +44,7 @@ func scatterShowLabel() *charts.Scatter {
 	scatter := charts.NewScatter()
 	scatter.SetGlobalOptions(charts.WithTitleOpts(
 		opts.Title{
-			Title: "Scatter-with-label-opts",
+			Title: "label options",
 		}),
 	)
 
@@ -66,7 +64,7 @@ func scatterSplitLine() *charts.Scatter {
 	scatter := charts.NewScatter()
 	scatter.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Scatter-splitline",
+			Title: "splitline options",
 		}),
 		charts.WithXAxisOpts(opts.XAxis{
 			Name: "Sports",

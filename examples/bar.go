@@ -26,10 +26,7 @@ func generateBarItems() []opts.BarData {
 func barBasic() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title:    "Bar-basic-example",
-			Subtitle: "This is the subtitle.",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "basic bar example", Subtitle: "This is the subtitle."}),
 	)
 
 	bar.SetXAxis(weeks).
@@ -42,17 +39,13 @@ func barTitle() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title:    "Bar-with-title/legend-opts",
+			Title:    "title and legend options",
 			Subtitle: "go-echarts is an awesome chart library written in Golang",
 			Link:     "https://github.com/go-echarts/go-echarts",
 			Right:    "40%",
 		}),
-		charts.WithToolboxOpts(opts.Toolbox{
-			Show: true,
-		}),
-		charts.WithLegendOpts(opts.Legend{
-			Right: "80%",
-		}),
+		charts.WithToolboxOpts(opts.Toolbox{Show: true}),
+		charts.WithLegendOpts(opts.Legend{Right: "80%"}),
 	)
 	bar.SetXAxis(weeks).
 		AddSeries("Category A", generateBarItems()).
@@ -63,15 +56,9 @@ func barTitle() *charts.Bar {
 func barTooltip() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-with-tooltip",
-		}),
-		charts.WithTooltipOpts(opts.Tooltip{
-			Show: true,
-		}),
-		charts.WithLegendOpts(opts.Legend{
-			Right: "80%",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "tooltip options"}),
+		charts.WithTooltipOpts(opts.Tooltip{Show: true}),
+		charts.WithLegendOpts(opts.Legend{Right: "80%"}),
 	)
 	bar.SetXAxis(weeks).
 		AddSeries("Category A", generateBarItems()).
@@ -82,9 +69,7 @@ func barTooltip() *charts.Bar {
 func barSetToolbox() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-with-toolbox-opts",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "toolbox options"}),
 		charts.WithToolboxOpts(opts.Toolbox{
 			Show:  true,
 			Right: "20%",
@@ -113,9 +98,7 @@ func barSetToolbox() *charts.Bar {
 func barShowLabel() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-with-label-opts",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "label options"}),
 	)
 	bar.SetXAxis(weeks).
 		AddSeries("Category A", generateBarItems()).
@@ -133,7 +116,7 @@ func barXYName() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-display-axes-name",
+			Title: "display the axes name",
 		}),
 		charts.WithXAxisOpts(opts.XAxis{
 			Name: "XAxisName",
@@ -152,7 +135,7 @@ func barColor() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-set-colors",
+			Title: "set user-defined colors",
 		}),
 		charts.WithColorsOpts(opts.Colors{"blue", "pink"}),
 	)
@@ -166,7 +149,7 @@ func barSplitLine() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-splitline",
+			Title: "splitline options",
 		}),
 		charts.WithXAxisOpts(opts.XAxis{
 			Name: "XAxisName",
@@ -191,7 +174,7 @@ func barGap() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-bargap",
+			Title: "set the gap of each bar",
 		}),
 	)
 	bar.SetXAxis(weeks).
@@ -209,7 +192,7 @@ func barYAxis() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-yaxis-formatter",
+			Title: "set the yaxis formatter",
 		}),
 		charts.WithYAxisOpts(opts.YAxis{
 			AxisLabel: &opts.Label{Formatter: "{value} qps"},
@@ -226,7 +209,7 @@ func barDataZoomInside() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-datazoom-inside",
+			Title: "datazoom options(inside)",
 		}),
 		charts.WithDataZoomOpts(opts.DataZoom{
 			Type:  "inside",
@@ -245,7 +228,7 @@ func barDataZoomSlider() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-datazoom-slider",
+			Title: "datazoom options(slider)",
 		}),
 		charts.WithDataZoomOpts(opts.DataZoom{
 			Type:  "slider",
@@ -264,7 +247,7 @@ func barReverse() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-reverse-xy-axis",
+			Title: "reverse xaxis and yaxis",
 		}),
 	)
 
@@ -279,7 +262,7 @@ func barStack() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-stack",
+			Title: "stack style",
 		}),
 	)
 	bar.SetXAxis(weeks).
@@ -295,7 +278,7 @@ func barMarkPoints() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-markpoints",
+			Title: "markpoint options",
 		}),
 	)
 
@@ -324,7 +307,7 @@ func barMarkLines() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-marklines",
+			Title: "markline options",
 		}),
 	)
 
@@ -341,9 +324,7 @@ func barMarkLines() *charts.Bar {
 func barOverlap() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-overlap",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "overlap rect-charts"}),
 	)
 
 	bar.SetXAxis(weeks).
@@ -362,7 +343,8 @@ func barSize() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Bar-canvas-size",
+			Title:    "adjust canvas size",
+			Subtitle: "I want a bigger canvas size :)",
 		}),
 		charts.WithInitializationOpts(opts.Initialization{
 			Width:  "1200px",

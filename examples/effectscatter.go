@@ -23,9 +23,7 @@ func generateEffectScatterItems() []opts.EffectScatterData {
 func esBase() *charts.EffectScatter {
 	es := charts.NewEffectScatter()
 	es.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "EffectScatter-example",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "basic EffectScatter example"}),
 	)
 
 	es.SetXAxis(player).
@@ -37,7 +35,7 @@ func esEffectStyle() *charts.EffectScatter {
 	es := charts.NewEffectScatter()
 	es.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "EffectScatter-wave-style",
+			Title: "wave style",
 		}),
 	)
 

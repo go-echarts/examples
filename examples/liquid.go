@@ -21,7 +21,7 @@ func liquidBase() *charts.Liquid {
 	liquid := charts.NewLiquid()
 	liquid.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Liquid-basic-example",
+			Title: "basic liquid example",
 		}),
 	)
 
@@ -38,7 +38,7 @@ func liquidShowLabel() *charts.Liquid {
 	liquid := charts.NewLiquid()
 	liquid.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Liquid-show-label",
+			Title: "show label",
 		}),
 	)
 
@@ -58,7 +58,7 @@ func liquidOutline() *charts.Liquid {
 	liquid := charts.NewLiquid()
 	liquid.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Liquid-show-outline",
+			Title: "show outline",
 		}),
 	)
 
@@ -79,7 +79,7 @@ func liquidWaveAnimation() *charts.Liquid {
 	liquid := charts.NewLiquid()
 	liquid.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Liquid-close-wave-animation",
+			Title: "disable wave animation",
 		}),
 	)
 
@@ -100,7 +100,7 @@ func liquidDiamond() *charts.Liquid {
 	liquid := charts.NewLiquid()
 	liquid.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Liquid-shape(Diamond)",
+			Title: "shape(Diamond)",
 		}),
 	)
 
@@ -118,7 +118,7 @@ func liquidPin() *charts.Liquid {
 	liquid := charts.NewLiquid()
 	liquid.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Liquid-shape(Pin)",
+			Title: "shape(Pin)",
 		}),
 	)
 
@@ -136,7 +136,7 @@ func liquidArrow() *charts.Liquid {
 	liquid := charts.NewLiquid()
 	liquid.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Liquid-shape(Arrow)",
+			Title: "shape(Arrow)",
 		}),
 	)
 
@@ -154,7 +154,7 @@ func liquidTriangle() *charts.Liquid {
 	liquid := charts.NewLiquid()
 	liquid.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
-			Title: "Liquid-shape(Triangle)",
+			Title: "shape(Triangle)",
 		}),
 	)
 
