@@ -23,8 +23,7 @@ var (
 	bar3DDays = [...]string{"Saturday", "Friday", "Thursday", "Wednesday", "Tuesday", "Monday", "Sunday"}
 )
 
-func genBar3dData() [][3]int {
-
+func genBar3dData() []opts.Chart3DData {
 	bar3DDays := [][3]int{
 		{0, 0, 5}, {0, 1, 1}, {0, 2, 0}, {0, 3, 0}, {0, 4, 0}, {0, 5, 0},
 		{0, 6, 0}, {0, 7, 0}, {0, 8, 0}, {0, 9, 0}, {0, 10, 0}, {0, 11, 2},
@@ -59,15 +58,21 @@ func genBar3dData() [][3]int {
 	for i := 0; i < len(bar3DDays); i++ {
 		bar3DDays[i][0], bar3DDays[i][1] = bar3DDays[i][1], bar3DDays[i][0]
 	}
-	return bar3DDays
+
+	ret := make([]opts.Chart3DData, 0)
+	for _, d := range bar3DDays {
+		ret = append(ret, opts.Chart3DData{
+			Value: []interface{}{d[0], d[1], d[2]},
+		})
+	}
+
+	return ret
 }
 
 func bar3DBase() *charts.Bar3D {
 	bar3d := charts.NewBar3D()
 	bar3d.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Bar3D-example",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "basic bar3d example"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
 			Max:        30,
@@ -80,16 +85,18 @@ func bar3DBase() *charts.Bar3D {
 		}),
 	)
 
-	bar3d.AddXYAxis(bar3DHrs, bar3DDays).AddZAxis("bar3d", genBar3dData())
+	bar3d.SetGlobalOptions(
+		charts.WithXAxis3DOpts(opts.XAxis3D{Data: bar3DHrs}),
+		charts.WithYAxis3DOpts(opts.YAxis3D{Data: bar3DDays}),
+	)
+	bar3d.AddSeries("bar3d", genBar3dData())
 	return bar3d
 }
 
 func bar3DAutoRotate() *charts.Bar3D {
 	bar3d := charts.NewBar3D()
 	bar3d.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Bar3D-auto-rotate",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "auto rotating"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
 			Max:        30,
@@ -103,16 +110,18 @@ func bar3DAutoRotate() *charts.Bar3D {
 		}),
 	)
 
-	bar3d.AddXYAxis(bar3DHrs, bar3DDays).AddZAxis("bar3d", genBar3dData())
+	bar3d.SetGlobalOptions(
+		charts.WithXAxis3DOpts(opts.XAxis3D{Data: bar3DHrs}),
+		charts.WithYAxis3DOpts(opts.YAxis3D{Data: bar3DDays}),
+	)
+	bar3d.AddSeries("bar3d", genBar3dData())
 	return bar3d
 }
 
 func bar3DRotateSpeed() *charts.Bar3D {
 	bar3d := charts.NewBar3D()
 	bar3d.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Bar3D-rotate-faster",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "rotating faster"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
 			Max:        30,
@@ -126,7 +135,11 @@ func bar3DRotateSpeed() *charts.Bar3D {
 		}),
 	)
 
-	bar3d.AddXYAxis(bar3DHrs, bar3DDays).AddZAxis("bar3d", genBar3dData())
+	bar3d.SetGlobalOptions(
+		charts.WithXAxis3DOpts(opts.XAxis3D{Data: bar3DHrs}),
+		charts.WithYAxis3DOpts(opts.YAxis3D{Data: bar3DDays}),
+	)
+	bar3d.AddSeries("bar3d", genBar3dData())
 	return bar3d
 }
 
@@ -147,9 +160,11 @@ func bar3DShading() *charts.Bar3D {
 			BoxDepth: 80,
 		}),
 	)
-
-	bar3d.AddXYAxis(bar3DHrs, bar3DDays).
-		AddZAxis("bar3d", genBar3dData(), charts.WithBar3DChartOpts(opts.Bar3DChart{Shading: "lambert"}))
+	bar3d.SetGlobalOptions(
+		charts.WithXAxis3DOpts(opts.XAxis3D{Data: bar3DHrs}),
+		charts.WithYAxis3DOpts(opts.YAxis3D{Data: bar3DDays}),
+	)
+	bar3d.AddSeries("bar3d", genBar3dData(), charts.WithBar3DChartOpts(opts.Bar3DChart{Shading: "lambert"}))
 	return bar3d
 }
 

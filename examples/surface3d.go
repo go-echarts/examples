@@ -15,9 +15,8 @@ var surfaceRangeColor = []string{
 	"#fee090", "#fdae61", "#f46d43", "#d73027", "#a50026",
 }
 
-func genSurface3dData0() [][3]interface{} {
+func genSurface3dData0() []opts.Chart3DData {
 	data := make([][3]interface{}, 0)
-
 	for i := -60; i < 60; i++ {
 		y := float64(i) / 60
 		for j := -60; j < 60; j++ {
@@ -26,10 +25,17 @@ func genSurface3dData0() [][3]interface{} {
 			data = append(data, [3]interface{}{x, y, z})
 		}
 	}
-	return data
+
+	ret := make([]opts.Chart3DData, 0, len(data))
+	for _, d := range data {
+		ret = append(ret, opts.Chart3DData{
+			Value: []interface{}{d[0], d[1], d[2]},
+		})
+	}
+	return ret
 }
 
-func genSurface3dData1() [][3]interface{} {
+func genSurface3dData1() []opts.Chart3DData {
 	data := make([][3]interface{}, 0)
 	for i := -30; i < 30; i++ {
 		y := float64(i) / 10
@@ -39,15 +45,20 @@ func genSurface3dData1() [][3]interface{} {
 			data = append(data, [3]interface{}{x, y, z})
 		}
 	}
-	return data
+
+	ret := make([]opts.Chart3DData, 0, len(data))
+	for _, d := range data {
+		ret = append(ret, opts.Chart3DData{
+			Value: []interface{}{d[0], d[1], d[2]},
+		})
+	}
+	return ret
 }
 
 func surface3DBase() *charts.Surface3D {
 	surface3d := charts.NewSurface3D()
 	surface3d.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "surface3D-example",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "basic surface3D example"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
 			InRange:    &opts.VisualMapInRange{Color: surfaceRangeColor},
@@ -56,16 +67,14 @@ func surface3DBase() *charts.Surface3D {
 		}),
 	)
 
-	surface3d.AddZAxis("surface3d", genSurface3dData0())
+	surface3d.AddSeries("surface3d", genSurface3dData0())
 	return surface3d
 }
 
 func surface3DRose() *charts.Surface3D {
 	surface3d := charts.NewSurface3D()
 	surface3d.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "surface3D-Rose",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "Rose style"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
 			InRange:    &opts.VisualMapInRange{Color: surfaceRangeColor},
@@ -74,7 +83,7 @@ func surface3DRose() *charts.Surface3D {
 		}),
 	)
 
-	surface3d.AddZAxis("surface3d", genSurface3dData1())
+	surface3d.AddSeries("surface3d", genSurface3dData1())
 	return surface3d
 }
 

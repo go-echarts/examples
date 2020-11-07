@@ -15,27 +15,26 @@ var line3DColor = []string{
 	"#fee090", "#fdae61", "#f46d43", "#d73027", "#a50026",
 }
 
-func genLine3dData() [][3]float64 {
+func genLine3dData() []opts.Chart3DData {
 	data := make([][3]float64, 0)
 	for i := 0; i < 25000; i++ {
 		t := float64(i) / 1000
 		data = append(data,
-			[3]float64{
-				(1 + 0.25*math.Cos(75*t)) * math.Cos(t),
-				(1 + 0.25*math.Cos(75*t)) * math.Sin(t),
-				t + 2.0*math.Sin(75.0*t),
-			},
+			[3]float64{(1 + 0.25*math.Cos(75*t)) * math.Cos(t), (1 + 0.25*math.Cos(75*t)) * math.Sin(t), t + 2.0*math.Sin(75.0*t)},
 		)
 	}
-	return data
+
+	ret := make([]opts.Chart3DData, 0, len(data))
+	for _, d := range data {
+		ret = append(ret, opts.Chart3DData{Value: []interface{}{d[0], d[1], d[2]}})
+	}
+	return ret
 }
 
 func line3DBase() *charts.Line3D {
 	line3d := charts.NewLine3D()
 	line3d.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Line3D-example",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "basic line3d example"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
 			Max:        30,
@@ -43,16 +42,14 @@ func line3DBase() *charts.Line3D {
 		}),
 	)
 
-	line3d.AddZAxis("line3D", genLine3dData())
+	line3d.AddSeries("line3D", genLine3dData())
 	return line3d
 }
 
 func line3DAutoRotate() *charts.Line3D {
 	line3d := charts.NewLine3D()
 	line3d.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "Line3D-auto-rotate",
-		}),
+		charts.WithTitleOpts(opts.Title{Title: "auto rotating"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
 			Calculable: true,
 			Max:        30,
@@ -66,7 +63,7 @@ func line3DAutoRotate() *charts.Line3D {
 		}),
 	)
 
-	line3d.AddZAxis("line3D", genLine3dData())
+	line3d.AddSeries("line3D", genLine3dData())
 	return line3d
 }
 
