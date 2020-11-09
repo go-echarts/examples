@@ -131,6 +131,23 @@ func barXYName() *charts.Bar {
 	return bar
 }
 
+func barXYFormatter() *charts.Bar {
+	bar := charts.NewBar()
+	bar.SetGlobalOptions(
+		charts.WithTitleOpts(opts.Title{Title: "customized the xaxis/yaxis formatter"}),
+		charts.WithXAxisOpts(opts.XAxis{
+			AxisLabel: &opts.AxisLabel{Show: true, Formatter: "{value} x-unit"},
+		}),
+		charts.WithYAxisOpts(opts.YAxis{
+			AxisLabel: &opts.AxisLabel{Show: true, Formatter: "{value} y-unit"},
+		}),
+	)
+	bar.SetXAxis(weeks).
+		AddSeries("Category A", generateBarItems()).
+		AddSeries("Category B", generateBarItems())
+	return bar
+}
+
 func barColor() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
@@ -185,23 +202,6 @@ func barGap() *charts.Bar {
 			BarGap: "150%",
 		}),
 	)
-	return bar
-}
-
-func barYAxis() *charts.Bar {
-	bar := charts.NewBar()
-	bar.SetGlobalOptions(
-		charts.WithTitleOpts(opts.Title{
-			Title: "set the yaxis formatter",
-		}),
-		charts.WithYAxisOpts(opts.YAxis{
-			AxisLabel: &opts.Label{Formatter: "{value} qps"},
-		}),
-	)
-
-	bar.SetXAxis(weeks).
-		AddSeries("Category A", generateBarItems()).
-		AddSeries("Category B", generateBarItems())
 	return bar
 }
 
@@ -372,10 +372,10 @@ func (BarExamples) Examples() {
 		barSetToolbox(),
 		barShowLabel(),
 		barXYName(),
+		barXYFormatter(),
 		barColor(),
 		barSplitLine(),
 		barGap(),
-		barYAxis(),
 		barDataZoomInside(),
 		barDataZoomSlider(),
 		barReverse(),

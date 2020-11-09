@@ -92,7 +92,7 @@ func generateRadarItems(radarData [][]float32) []opts.RadarData {
 
 }
 
-var indicators = []opts.Indicator{
+var indicators = []*opts.Indicator{
 	{Name: "AQI", Max: 300},
 	{Name: "PM2.5", Max: 250},
 	{Name: "PM10", Max: 300},

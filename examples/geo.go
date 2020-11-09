@@ -31,10 +31,8 @@ func geoBase() *charts.Geo {
 	geo.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{Title: "basic geo example"}),
 		charts.WithGeoComponentOpts(opts.GeoComponent{
-			Map: "china",
-			ItemStyle: opts.ItemStyle{
-				Color: "#006666",
-			},
+			Map:       "china",
+			ItemStyle: &opts.ItemStyle{Color: "#006666"},
 		}),
 	)
 

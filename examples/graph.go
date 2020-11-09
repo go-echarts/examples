@@ -27,8 +27,7 @@ func genLinks() []opts.GraphLink {
 	links := make([]opts.GraphLink, 0)
 	for i := 0; i < len(graphNodes); i++ {
 		for j := 0; j < len(graphNodes); j++ {
-			links = append(links,
-				opts.GraphLink{Source: graphNodes[i].Name, Target: graphNodes[j].Name})
+			links = append(links, opts.GraphLink{Source: graphNodes[i].Name, Target: graphNodes[j].Name})
 		}
 	}
 	return links
@@ -41,11 +40,8 @@ func graphBase() *charts.Graph {
 	)
 	graph.AddSeries("graph", graphNodes, genLinks(),
 		charts.WithGraphChartOpts(
-			opts.GraphChart{
-				Force: opts.GraphForce{
-					Repulsion: 8000,
-				},
-			}),
+			opts.GraphChart{Force: &opts.GraphForce{Repulsion: 8000}},
+		),
 	)
 	return graph
 }
@@ -60,16 +56,10 @@ func graphCircle() *charts.Graph {
 		SetSeriesOptions(
 			charts.WithGraphChartOpts(
 				opts.GraphChart{
-					Force: opts.GraphForce{
-						Repulsion: 8000,
-					},
+					Force:  &opts.GraphForce{Repulsion: 8000},
 					Layout: "circular",
 				}),
-
-			charts.WithLabelOpts(opts.Label{
-				Show:     true,
-				Position: "right",
-			}),
+			charts.WithLabelOpts(opts.Label{Show: true, Position: "right"}),
 		)
 	return graph
 }
@@ -104,7 +94,7 @@ func graphNpmDep() *charts.Graph {
 				FocusNodeAdjacency: true,
 			}),
 			charts.WithEmphasisOpts(opts.Emphasis{
-				Label: opts.Label{
+				Label: &opts.Label{
 					Show:     true,
 					Color:    "black",
 					Position: "left",

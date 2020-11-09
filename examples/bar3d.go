@@ -106,7 +106,7 @@ func bar3DAutoRotate() *charts.Bar3D {
 		charts.WithGrid3DOpts(opts.Grid3D{
 			BoxWidth:    160,
 			BoxDepth:    80,
-			ViewControl: opts.ViewControl{AutoRotate: true},
+			ViewControl: &opts.ViewControl{AutoRotate: true},
 		}),
 	)
 
@@ -131,7 +131,7 @@ func bar3DRotateSpeed() *charts.Bar3D {
 		charts.WithGrid3DOpts(opts.Grid3D{
 			BoxWidth:    160,
 			BoxDepth:    80,
-			ViewControl: opts.ViewControl{AutoRotate: true, AutoRotateSpeed: 200},
+			ViewControl: &opts.ViewControl{AutoRotate: true, AutoRotateSpeed: 200},
 		}),
 	)
 

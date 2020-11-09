@@ -57,7 +57,7 @@ func line3DAutoRotate() *charts.Line3D {
 		}),
 
 		charts.WithGrid3DOpts(opts.Grid3D{
-			ViewControl: opts.ViewControl{
+			ViewControl: &opts.ViewControl{
 				AutoRotate: true,
 			},
 		}),
