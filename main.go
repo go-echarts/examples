@@ -42,6 +42,7 @@ func main() {
 		examples.ScatterExamples{},
 		examples.Scatter3dExamples{},
 		examples.Surface3dExamples{},
+		examples.TreeExamples{},
 		examples.ThemeriverExamples{},
 		examples.ThemeExamples{},
 		examples.WordcloudExamples{},
