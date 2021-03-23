@@ -1,24 +1,26 @@
 package examples
 
 import (
+	"io"
 	"math/rand"
 	"os"
+	"strconv"
 
 	"github.com/go-echarts/go-echarts/v2/charts"
+	"github.com/go-echarts/go-echarts/v2/components"
 	"github.com/go-echarts/go-echarts/v2/opts"
 )
 
-// generate random data for sunburst chart
-func generateItems() []opts.SunBurstData {
+func generateSunburstItems() []opts.SunBurstData {
 	items := make([]opts.SunBurstData, 0)
 	for i := 0; i < 7; i++ {
 		items = append(items, opts.SunBurstData{
 			Value: rand.Float64(),
-			Name:  "11111",
+			Name:  "parent-" + strconv.Itoa(i),
 			Children: []*opts.SunBurstData{
 				{
 					Value: rand.Float64(),
-					Name:  "2222",
+					Name:  "child-" + strconv.Itoa(i),
 				},
 			},
 		})
@@ -26,25 +28,26 @@ func generateItems() []opts.SunBurstData {
 	return items
 }
 
-func main() {
+func sunburstBase() *charts.Sunburst {
 	sunburst := charts.NewSunburst()
 	sunburst.SetGlobalOptions(
-		charts.WithTitleOpts((opts.Title{Title: "Sunburst"})),
+		charts.WithTitleOpts(opts.Title{Title: "basic sunburst example"}),
 	)
-	sunburst.AddSeries("sunburst", generateItems()).SetSeriesOptions(
-		charts.WithLabelOpts(
-			opts.Label{
-				Show:      true,
-				Formatter: "12345s",
-			},
-		),
-		charts.WithSunburstOpts(
-			opts.SunburstChart{
-				Animation: true,
-			},
-		),
+	sunburst.AddSeries("sunburst", generateSunburstItems())
+	return sunburst
+}
+
+type SunburstExample struct{}
+
+func (SunburstExample) Examples() {
+	page := components.NewPage()
+	page.AddCharts(
+		sunburstBase(),
 	)
-	// Where the magic happens
-	f, _ := os.Create("test.html")
-	sunburst.Render(f)
+	f, err := os.Create("examples/html/sunburst.html")
+	if err != nil {
+		panic(err)
+	}
+	page.Render(io.MultiWriter(f))
+
 }

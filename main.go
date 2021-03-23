@@ -45,6 +45,7 @@ func main() {
 		examples.ThemeriverExamples{},
 		examples.ThemeExamples{},
 		examples.WordcloudExamples{},
+		examples.SunburstExample{},
 	}
 
 	for _, e := range examplers {
