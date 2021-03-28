@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/go-echarts/go-echarts-examples/examples"
+	"github.com/go-echarts/examples/examples"
 )
 
 func logRequest(handler http.Handler) http.Handler {
@@ -41,6 +41,7 @@ func main() {
 		examples.SankeyExamples{},
 		examples.ScatterExamples{},
 		examples.Scatter3dExamples{},
+		examples.SunburstExample{},
 		examples.Surface3dExamples{},
 		examples.TreeExamples{},
 		examples.ThemeriverExamples{},
