@@ -31,7 +31,7 @@ func gaugeTimer() *charts.Gauge {
 
 	fn := fmt.Sprintf(`setInterval(function () {
 			option_%s.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
-			myChart_%s.setOption(option_%s, true);
+			goecharts_%s.setOption(option_%s, true);
 		}, 2000);`, gauge.ChartID, gauge.ChartID, gauge.ChartID)
 	gauge.AddJSFuncs(fn)
 	return gauge
