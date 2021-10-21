@@ -44,6 +44,7 @@ func main() {
 		examples.SunburstExample{},
 		examples.Surface3dExamples{},
 		examples.TreeExamples{},
+		examples.TreeMapExamples{},
 		examples.ThemeriverExamples{},
 		examples.ThemeExamples{},
 		examples.WordcloudExamples{},
