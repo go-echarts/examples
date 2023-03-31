@@ -55,6 +55,9 @@ func lineShowLabel() *charts.Line {
 	line.SetXAxis(fruits).
 		AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(
+			charts.WithLineChartOpts(opts.LineChart{
+				ShowSymbol: true,
+			}),
 			charts.WithLabelOpts(opts.Label{
 				Show: true,
 			}),
