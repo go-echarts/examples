@@ -45,7 +45,7 @@ func barTitle() *charts.Bar {
 			Right:    "40%",
 		}),
 		charts.WithToolboxOpts(opts.Toolbox{Show: true}),
-		charts.WithLegendOpts(opts.Legend{Right: "80%"}),
+		charts.WithLegendOpts(opts.Legend{Show: true, Right: "80%"}),
 	)
 	bar.SetXAxis(weeks).
 		AddSeries("Category A", generateBarItems()).
@@ -58,7 +58,7 @@ func barTooltip() *charts.Bar {
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{Title: "tooltip options"}),
 		charts.WithTooltipOpts(opts.Tooltip{Show: true}),
-		charts.WithLegendOpts(opts.Legend{Right: "80%"}),
+		charts.WithLegendOpts(opts.Legend{Show: true, Right: "80%"}),
 	)
 	bar.SetXAxis(weeks).
 		AddSeries("Category A", generateBarItems()).
