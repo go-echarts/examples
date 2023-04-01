@@ -141,6 +141,7 @@ func radarStyle() *charts.Radar {
 		}),
 
 		charts.WithLegendOpts(opts.Legend{
+			Show:   true,
 			Bottom: "5px",
 			TextStyle: &opts.TextStyle{
 				Color: "#eee",
@@ -189,6 +190,7 @@ func radarLegendMulti() *charts.Radar {
 			},
 		}),
 		charts.WithLegendOpts(opts.Legend{
+			Show:   true,
 			Bottom: "5px",
 			TextStyle: &opts.TextStyle{
 				Color: "#eee",
@@ -236,6 +238,7 @@ func radarLegendSingle() *charts.Radar {
 			},
 		}),
 		charts.WithLegendOpts(opts.Legend{
+			Show:   true,
 			Bottom: "5px",
 			TextStyle: &opts.TextStyle{
 				Color: "#eee",
