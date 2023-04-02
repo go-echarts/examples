@@ -15,3 +15,5 @@
 .idea/
 .vscode/
 *.html
+!examples/html/*.html
+!index.html

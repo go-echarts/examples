@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Awesome go-echarts</title>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/echarts.min.js"></script>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/themes/macarons.js"></script>
+</head>
+
+<body>
+
+
+
+    <style> .container {display: flex;justify-content: center;align-items: center;} .item {margin: auto;} </style> 
+<div class="container">
+    <div class="item" id="QeyTQBALrhxQ" style="width:900px;height:500px;"></div>
+</div>
+
+<script type="text/javascript">
+    "use strict";
+    let goecharts_QeyTQBALrhxQ = echarts.init(document.getElementById('QeyTQBALrhxQ'), "macarons");
+    let option_QeyTQBALrhxQ = {"dataset":{"source":null},"legend":{"show":true,"type":""},"series":[{"name":"Root FS","type":"treemap","roam":true,"smooth":false,"connectNulls":false,"showSymbol":false,"waveAnimation":false,"levels":[{"upperLabel":{},"itemStyle":{"borderColor":"#777","borderWidth":1,"gapWidth":1}},{"itemStyle":{"borderColor":"#666","borderWidth":2,"gapWidth":1},"emphasis":{"itemStyle":{"borderColor":"#555"}}},{"colorSaturation":[0.35,0.5],"itemStyle":{"borderColorSaturation":0.6,"gapWidth":1}}],"upperLabel":{"show":true},"renderLabelForZeroData":false,"selectedMode":false,"animation":true,"data":[{"name":"d1","children":[{"name":"f1","value":1000}]},{"name":"d2","children":[{"name":"f1","value":100},{"name":"f2","value":300},{"name":"f3","value":200}]},{"name":"d3","children":[{"name":"f0","value":5},{"name":"f1","value":11},{"name":"f2","value":9},{"name":"f3","value":6},{"name":"f4","value":5},{"name":"f5","value":11},{"name":"f6","value":6},{"name":"f7","value":9},{"name":"f8","value":12},{"name":"f9","value":8},{"name":"f10","value":14},{"name":"f11","value":13},{"name":"f12","value":9},{"name":"f13","value":14},{"name":"f14","value":14},{"name":"f15","value":10},{"name":"f16","value":11},{"name":"f17","value":8},{"name":"f18","value":11},{"name":"f19","value":6},{"name":"f20","value":12},{"name":"f21","value":7},{"name":"f22","value":13},{"name":"f23","value":13},{"name":"f24","value":9},{"name":"f25","value":8},{"name":"f26","value":6},{"name":"f27","value":10},{"name":"f28","value":6},{"name":"f29","value":5},{"name":"f30","value":12},{"name":"f31","value":6},{"name":"f32","value":10},{"name":"f33","value":10},{"name":"f34","value":12},{"name":"f35","value":7},{"name":"f36","value":9},{"name":"f37","value":14},{"name":"f38","value":13},{"name":"f39","value":7}]},{"name":"f1","value":450}],"itemStyle":{"borderColor":"#fff"},"label":{"show":true,"color":"White","position":"inside"}}],"title":{"text":"Basic treemap example","subtext":"File system usage","left":"center"},"toolbox":{"show":true,"orient":"horizontal","left":"right","feature":{"saveAsImage":{"show":true,"title":"Save as image"},"brush":null,"restore":{"show":true,"title":"Reset"}}},"tooltip":{"show":true,"formatter":function (info) {var formatUtil = echarts.format;var value = info.value;var treePathInfo = info.treePathInfo;var treePath = [];for (var i = 1; i < treePathInfo.length; i++) {treePath.push(treePathInfo[i].name);}return ['<div class=\"tooltip-title\">' + formatUtil.encodeHTML(treePath.join('/')) + '</div>','Disk Usage: ' + formatUtil.addCommas(value) + ' KB',].join('');}}}
+;
+    
+	let action_QeyTQBALrhxQ = {"areas":{},"type":""}
+;
+    
+    goecharts_QeyTQBALrhxQ.setOption(option_QeyTQBALrhxQ);
+ 	goecharts_QeyTQBALrhxQ.dispatchAction(action_QeyTQBALrhxQ);
+</script>
+
+
+
+
+</body>
+</html>

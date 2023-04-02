@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Awesome go-echarts</title>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/echarts.min.js"></script>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/maps/china.js"></script>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/maps/guangdong.js"></script>
+</head>
+
+<body>
+
+
+
+    <style> .container {display: flex;justify-content: center;align-items: center;} .item {margin: auto;} </style> 
+<div class="container">
+    <div class="item" id="NynUBaiMDDHu" style="width:900px;height:500px;"></div>
+</div>
+
+<script type="text/javascript">
+    "use strict";
+    let goecharts_NynUBaiMDDHu = echarts.init(document.getElementById('NynUBaiMDDHu'), "white");
+    let option_NynUBaiMDDHu = {"color":["#5470c6","#91cc75","#fac858","#ee6666","#73c0de","#3ba272","#fc8452","#9a60b4","#ea7ccc"],"dataset":{"source":null},"geo":{"map":"china","itemStyle":{"color":"#006666"}},"legend":{"show":true,"type":""},"series":[{"name":"geo","type":"effectScatter","smooth":false,"connectNulls":false,"showSymbol":false,"waveAnimation":false,"coordinateSystem":"geo","renderLabelForZeroData":false,"selectedMode":false,"animation":false,"data":[{"name":"北京","value":[116.4,39.9,13]},{"name":"上海","value":[121.47,31.23,35]},{"name":"重庆","value":[106.55,29.56,18]},{"name":"武汉","value":[114.31,30.52,31]},{"name":"台湾","value":[121.3,25.03,47]},{"name":"香港","value":[114.17,22.28,44]}],"rippleEffect":{"period":4,"scale":6,"brushType":"stroke"}}],"title":{"text":"basic geo example"},"tooltip":{"show":false,"formatter":function (params) {return params.name + ' : ' + params.value[2];}}}
+;
+    
+	let action_NynUBaiMDDHu = {"areas":{},"type":""}
+;
+    
+    goecharts_NynUBaiMDDHu.setOption(option_NynUBaiMDDHu);
+ 	goecharts_NynUBaiMDDHu.dispatchAction(action_NynUBaiMDDHu);
+</script>
+ 
+<div class="container">
+    <div class="item" id="ZOVyFNTPINwO" style="width:900px;height:500px;"></div>
+</div>
+
+<script type="text/javascript">
+    "use strict";
+    let goecharts_ZOVyFNTPINwO = echarts.init(document.getElementById('ZOVyFNTPINwO'), "white");
+    let option_ZOVyFNTPINwO = {"color":["#5470c6","#91cc75","#fac858","#ee6666","#73c0de","#3ba272","#fc8452","#9a60b4","#ea7ccc"],"dataset":{"source":null},"geo":{"map":"广东"},"legend":{"show":true,"type":""},"series":[{"name":"geo","type":"scatter","smooth":false,"connectNulls":false,"showSymbol":false,"waveAnimation":false,"coordinateSystem":"geo","renderLabelForZeroData":false,"selectedMode":false,"animation":false,"data":[{"name":"汕头","value":[116.69,23.39,63]},{"name":"深圳","value":[114.07,22.62,55]},{"name":"广州","value":[113.23,23.16,7]}]}],"title":{"text":"Guangdong province"},"tooltip":{"show":false,"formatter":function (params) {return params.name + ' : ' + params.value[2];}},"visualMap":[{"calculable":true,"inRange":{"color":["#50a3ba","#eac736","#d94e5d"]},"show":false}]}
+;
+    
+	let action_ZOVyFNTPINwO = {"areas":{},"type":""}
+;
+    
+    goecharts_ZOVyFNTPINwO.setOption(option_ZOVyFNTPINwO);
+ 	goecharts_ZOVyFNTPINwO.dispatchAction(action_ZOVyFNTPINwO);
+</script>
+
+
+
+
+</body>
+</html>
