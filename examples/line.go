@@ -257,6 +257,29 @@ func lineDemo() *charts.Line {
 	return line
 }
 
+func lineSymbols() *charts.Line {
+
+	line := charts.NewLine()
+	// set some global options like Title/Legend/ToolTip or anything else
+	line.SetGlobalOptions(
+		charts.WithTitleOpts(opts.Title{
+			Title:    "symbol options",
+			Subtitle: "tooltip with 'axis' trigger",
+		}),
+		charts.WithTooltipOpts(opts.Tooltip{Show: true, Trigger: "axis"}),
+	)
+
+	// Put data into instance
+	line.SetXAxis(fruits).
+		AddSeries("Category A", generateLineItems()).
+		AddSeries("Category B", generateLineItems()).
+		SetSeriesOptions(charts.WithLineChartOpts(
+			opts.LineChart{Smooth: false, ShowSymbol: true, SymbolSize: 15, Symbol: "diamond"},
+		))
+
+	return line
+}
+
 type LineExamples struct{}
 
 func (LineExamples) Examples() {
@@ -264,6 +287,7 @@ func (LineExamples) Examples() {
 	page.AddCharts(
 		lineBase(),
 		lineShowLabel(),
+		lineSymbols(),
 		lineMarkPoint(),
 		lineSplitLine(),
 		lineStep(),
