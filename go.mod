@@ -1,8 +1,8 @@
 module github.com/go-echarts/examples
 
-go 1.15
+go 1.18
 
-require github.com/go-echarts/go-echarts/v2 v2.2.7-0.20230404034259-56edc0f92a2d
+require github.com/go-echarts/go-echarts/v2 v2.2.7-0.20230527083027-9a8b8c212241
 
 // dev mode
 //replace (
