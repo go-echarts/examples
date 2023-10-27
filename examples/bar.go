@@ -76,7 +76,7 @@ func barSetToolbox() *charts.Bar {
 			Feature: &opts.ToolBoxFeature{
 				SaveAsImage: &opts.ToolBoxFeatureSaveAsImage{
 					Show:  true,
-					Type:  "png",
+					Type:  "jpg",
 					Title: "Anything you want",
 				},
 				DataView: &opts.ToolBoxFeatureDataView{
