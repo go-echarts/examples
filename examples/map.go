@@ -65,7 +65,7 @@ func mapShowLabel() *charts.Map {
 	mc.AddSeries("map", baseMapData).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
-				Show: true,
+				Show: opts.Bool(true),
 			}),
 		)
 	return mc
@@ -79,7 +79,7 @@ func mapVisualMap() *charts.Map {
 			Title: "VisualMap",
 		}),
 		charts.WithVisualMapOpts(opts.VisualMap{
-			Calculable: true,
+			Calculable: opts.Bool(true),
 		}),
 	)
 
@@ -95,7 +95,7 @@ func mapRegion() *charts.Map {
 			Title: "Guangdong province",
 		}),
 		charts.WithVisualMapOpts(opts.VisualMap{
-			Calculable: true,
+			Calculable: opts.Bool(true),
 			InRange:    &opts.VisualMapInRange{Color: []string{"#50a3ba", "#eac736", "#d94e5d"}},
 		}),
 	)
@@ -115,7 +115,7 @@ func mapTheme() *charts.Map {
 			Title: "Map-theme",
 		}),
 		charts.WithVisualMapOpts(opts.VisualMap{
-			Calculable: true,
+			Calculable: opts.Bool(true),
 			Max:        150,
 		}),
 	)

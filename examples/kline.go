@@ -123,7 +123,7 @@ func klineBase() *charts.Kline {
 			SplitNumber: 20,
 		}),
 		charts.WithYAxisOpts(opts.YAxis{
-			Scale: true,
+			Scale: opts.Bool(true),
 		}),
 		charts.WithDataZoomOpts(opts.DataZoom{
 			Start:      50,
@@ -154,7 +154,7 @@ func klineDataZoomInside() *charts.Kline {
 			SplitNumber: 20,
 		}),
 		charts.WithYAxisOpts(opts.YAxis{
-			Scale: true,
+			Scale: opts.Bool(true),
 		}),
 		charts.WithDataZoomOpts(opts.DataZoom{
 			Type:       "inside",
@@ -186,7 +186,7 @@ func klineDataZoomBoth() *charts.Kline {
 			SplitNumber: 20,
 		}),
 		charts.WithYAxisOpts(opts.YAxis{
-			Scale: true,
+			Scale: opts.Bool(true),
 		}),
 		charts.WithDataZoomOpts(opts.DataZoom{
 			Type:       "inside",
@@ -224,7 +224,7 @@ func klineDataZoomYAxis() *charts.Kline {
 			SplitNumber: 20,
 		}),
 		charts.WithYAxisOpts(opts.YAxis{
-			Scale: true,
+			Scale: opts.Bool(true),
 		}),
 		charts.WithDataZoomOpts(opts.DataZoom{
 			Type:       "slider",
@@ -256,7 +256,7 @@ func klineStyle() *charts.Kline {
 			SplitNumber: 20,
 		}),
 		charts.WithYAxisOpts(opts.YAxis{
-			Scale: true,
+			Scale: opts.Bool(true),
 		}),
 		charts.WithDataZoomOpts(opts.DataZoom{
 			Start:      50,
@@ -279,7 +279,7 @@ func klineStyle() *charts.Kline {
 			}),
 			charts.WithMarkPointStyleOpts(opts.MarkPointStyle{
 				Label: &opts.Label{
-					Show: true,
+					Show: opts.Bool(true),
 				},
 			}),
 			charts.WithItemStyleOpts(opts.ItemStyle{

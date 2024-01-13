@@ -34,7 +34,7 @@ var TreeNodes = []*opts.TreeData{
 	},
 	{
 		Name:      "Node3",
-		Collapsed: true,
+		Collapsed: opts.Bool(true),
 		Children: []*opts.TreeData{
 			{
 				Name: "Chield1",
@@ -61,7 +61,7 @@ func treeBase() *charts.Tree {
 	graph.SetGlobalOptions(
 		charts.WithInitializationOpts(opts.Initialization{Width: "100%", Height: "95vh"}),
 		charts.WithTitleOpts(opts.Title{Title: "basic tree example"}),
-		charts.WithTooltipOpts(opts.Tooltip{Show: false}),
+		//charts.WithTooltipOpts(opts.Tooltip{Show: false}),
 	)
 	graph.AddSeries("tree", Tree).
 		SetSeriesOptions(
@@ -71,11 +71,11 @@ func treeBase() *charts.Tree {
 					Orient:           "LR",
 					InitialTreeDepth: -1,
 					Leaves: &opts.TreeLeaves{
-						Label: &opts.Label{Show: true, Position: "right", Color: "Black"},
+						Label: &opts.Label{Show: opts.Bool(true), Position: "right", Color: "Black"},
 					},
 				},
 			),
-			charts.WithLabelOpts(opts.Label{Show: true, Position: "top", Color: "Black"}),
+			charts.WithLabelOpts(opts.Label{Show: opts.Bool(true), Position: "top", Color: "Black"}),
 		)
 	return graph
 }

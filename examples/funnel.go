@@ -39,7 +39,7 @@ func funnelShowLabel() *charts.Funnel {
 	funnel.AddSeries("Analytics", genFunnelKvItems()).
 		SetSeriesOptions(charts.WithLabelOpts(
 			opts.Label{
-				Show:     true,
+				Show:     opts.Bool(true),
 				Position: "left",
 			},
 		))

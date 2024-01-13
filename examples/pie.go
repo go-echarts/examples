@@ -42,7 +42,7 @@ func pieShowLabel() *charts.Pie {
 	pie.AddSeries("pie", generatePieItems()).
 		SetSeriesOptions(charts.WithLabelOpts(
 			opts.Label{
-				Show:      true,
+				Show:      opts.Bool(true),
 				Formatter: "{b}: {c}",
 			}),
 		)
@@ -58,7 +58,7 @@ func pieRadius() *charts.Pie {
 	pie.AddSeries("pie", generatePieItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
-				Show:      true,
+				Show:      opts.Bool(true),
 				Formatter: "{b}: {c}",
 			}),
 			charts.WithPieChartOpts(opts.PieChart{
@@ -79,7 +79,7 @@ func pieRoseArea() *charts.Pie {
 	pie.AddSeries("pie", generatePieItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
-				Show:      true,
+				Show:      opts.Bool(true),
 				Formatter: "{b}: {c}",
 			}),
 			charts.WithPieChartOpts(opts.PieChart{
@@ -101,7 +101,7 @@ func pieRoseRadius() *charts.Pie {
 	pie.AddSeries("pie", generatePieItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
-				Show:      true,
+				Show:      opts.Bool(true),
 				Formatter: "{b}: {c}",
 			}),
 			charts.WithPieChartOpts(opts.PieChart{
@@ -132,7 +132,7 @@ func pieRoseAreaRadius() *charts.Pie {
 	pie.AddSeries("pie", generatePieItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
-				Show:      true,
+				Show:      opts.Bool(true),
 				Formatter: "{b}: {c}",
 			}),
 			charts.WithPieChartOpts(opts.PieChart{
@@ -154,7 +154,7 @@ func pieInPie() *charts.Pie {
 
 	pie.AddSeries("area", generatePieItems(),
 		charts.WithLabelOpts(opts.Label{
-			Show:      true,
+			Show:      opts.Bool(true),
 			Formatter: "{b}: {c}",
 		}),
 		charts.WithPieChartOpts(opts.PieChart{

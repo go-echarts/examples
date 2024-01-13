@@ -1,6 +1,6 @@
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
-github.com/go-echarts/go-echarts/v2 v2.3.2 h1:imRxqF5sLtEPBsv5HGwz9KklNuwCo0fTITZ31mrgfzo=
-github.com/go-echarts/go-echarts/v2 v2.3.2/go.mod h1:56YlvzhW/a+du15f3S2qUGNDfKnFOeJSThBIrVFHDtI=
+github.com/go-echarts/go-echarts/v2 v2.3.4-0.20240113084334-de4ee9f22d8c h1:eM6q4KH7J2tqoLkmDqEZ5cn2aeFsJ4d0YI1hyPKkgLE=
+github.com/go-echarts/go-echarts/v2 v2.3.4-0.20240113084334-de4ee9f22d8c/go.mod h1:56YlvzhW/a+du15f3S2qUGNDfKnFOeJSThBIrVFHDtI=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/stretchr/testify v1.6.0 h1:jlIyCplCJFULU/01vCkhKuTyc3OorI3bJFuw6obfgho=
 gopkg.in/yaml.v3 v3.0.0 h1:hjy8E9ON/egN1tAYqKb61G10WtihqetD4sz2H+8nIeA=

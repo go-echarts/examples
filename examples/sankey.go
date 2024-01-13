@@ -39,7 +39,7 @@ func sankeyBase() *charts.Sankey {
 		}),
 	)
 
-	sankey.AddSeries("sankey", sankeyNode, sankeyLink, charts.WithLabelOpts(opts.Label{Show: true}))
+	sankey.AddSeries("sankey", sankeyNode, sankeyLink, charts.WithLabelOpts(opts.Label{Show: opts.Bool(true)}))
 	return sankey
 }
 
@@ -73,7 +73,7 @@ func graphEnergy() *charts.Sankey {
 				Curveness: 0.5,
 			}),
 			charts.WithLabelOpts(opts.Label{
-				Show: true,
+				Show: opts.Bool(true),
 			}),
 		)
 	return sankey

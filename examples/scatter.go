@@ -53,7 +53,7 @@ func scatterShowLabel() *charts.Scatter {
 		AddSeries("Category B", generateScatterItems()).
 		SetSeriesOptions(charts.WithLabelOpts(
 			opts.Label{
-				Show:     true,
+				Show:     opts.Bool(true),
 				Position: "right",
 			}),
 		)
@@ -69,13 +69,13 @@ func scatterSplitLine() *charts.Scatter {
 		charts.WithXAxisOpts(opts.XAxis{
 			Name: "Sports",
 			SplitLine: &opts.SplitLine{
-				Show: true,
+				Show: opts.Bool(true),
 			},
 		}),
 		charts.WithYAxisOpts(opts.YAxis{
 			Name: "Score",
 			SplitLine: &opts.SplitLine{
-				Show: true,
+				Show: opts.Bool(true),
 			}}),
 	)
 

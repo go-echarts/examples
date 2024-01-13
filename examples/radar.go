@@ -109,8 +109,8 @@ func radarBase() *charts.Radar {
 		}),
 		charts.WithRadarComponentOpts(opts.RadarComponent{
 			Indicator: indicators,
-			SplitArea: &opts.SplitArea{Show: true},
-			SplitLine: &opts.SplitLine{Show: true},
+			SplitArea: &opts.SplitArea{Show: opts.Bool(true)},
+			SplitLine: &opts.SplitLine{Show: opts.Bool(true)},
 		}),
 	)
 	radar.AddSeries("Beijing", generateRadarItems(radarDataBJ))
@@ -133,7 +133,7 @@ func radarStyle() *charts.Radar {
 			Shape:       "circle",
 			SplitNumber: 5,
 			SplitLine: &opts.SplitLine{
-				Show: true,
+				Show: opts.Bool(true),
 				LineStyle: &opts.LineStyle{
 					Opacity: 0.1,
 				},
@@ -141,7 +141,7 @@ func radarStyle() *charts.Radar {
 		}),
 
 		charts.WithLegendOpts(opts.Legend{
-			Show:   true,
+			Show:   opts.Bool(true),
 			Bottom: "5px",
 			TextStyle: &opts.TextStyle{
 				Color: "#eee",
@@ -183,14 +183,14 @@ func radarLegendMulti() *charts.Radar {
 			Shape:       "circle",
 			SplitNumber: 5,
 			SplitLine: &opts.SplitLine{
-				Show: true,
+				Show: opts.Bool(true),
 				LineStyle: &opts.LineStyle{
 					Opacity: 0.1,
 				},
 			},
 		}),
 		charts.WithLegendOpts(opts.Legend{
-			Show:   true,
+			Show:   opts.Bool(true),
 			Bottom: "5px",
 			TextStyle: &opts.TextStyle{
 				Color: "#eee",
@@ -231,14 +231,14 @@ func radarLegendSingle() *charts.Radar {
 			Shape:       "circle",
 			SplitNumber: 5,
 			SplitLine: &opts.SplitLine{
-				Show: true,
+				Show: opts.Bool(true),
 				LineStyle: &opts.LineStyle{
 					Opacity: 0.1,
 				},
 			},
 		}),
 		charts.WithLegendOpts(opts.Legend{
-			Show:   true,
+			Show:   opts.Bool(true),
 			Bottom: "5px",
 			TextStyle: &opts.TextStyle{
 				Color: "#eee",

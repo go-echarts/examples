@@ -54,7 +54,7 @@ func geoGuangdong() *charts.Geo {
 			Map: "广东",
 		}),
 		charts.WithVisualMapOpts(opts.VisualMap{
-			Calculable: true,
+			Calculable: opts.Bool(true),
 			InRange: &opts.VisualMapInRange{
 				Color: []string{"#50a3ba", "#eac736", "#d94e5d"},
 			},
