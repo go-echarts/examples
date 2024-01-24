@@ -15,10 +15,6 @@ func logRequest(handler http.Handler) http.Handler {
 	})
 }
 
-func servePage() {
-
-}
-
 func main() {
 	examplers := []examples.Exampler{
 		examples.BarExamples{},
