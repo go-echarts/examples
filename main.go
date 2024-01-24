@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/go-echarts/examples/examples"
 )
@@ -12,6 +13,10 @@ func logRequest(handler http.Handler) http.Handler {
 		log.Printf("%s %s %s\n", r.RemoteAddr, r.Method, r.URL)
 		handler.ServeHTTP(w, r)
 	})
+}
+
+func servePage() {
+
 }
 
 func main() {
@@ -55,6 +60,15 @@ func main() {
 		e.Examples()
 	}
 
+	serverPages := "true"
+	if len(os.Args) > 1 {
+		serverPages = os.Args[1]
+	}
+
+	if serverPages == "false" {
+		log.Println("Generated pages only, not server")
+		return
+	}
 	fs := http.FileServer(http.Dir("examples/html"))
 	log.Println("running server at http://localhost:8089")
 	log.Fatal(http.ListenAndServe("localhost:8089", logRequest(fs)))
