@@ -83,7 +83,7 @@ var (
 	}
 
 	parallelAxisList = []opts.ParallelAxis{
-		{Dim: 0, Name: "Date", Inverse: true, Max: 31, NameLocation: "start"},
+		{Dim: 0, Name: "Date", Inverse: opts.Bool(true), Max: 31, NameLocation: "start"},
 		{Dim: 1, Name: "AQI"},
 		{Dim: 2, Name: "PM2.5"},
 		{Dim: 3, Name: "PM10"},
@@ -109,7 +109,6 @@ func parallelBase() *charts.Parallel {
 			Title: "basic Parallel example",
 		}),
 		charts.WithParallelAxisList(parallelAxisList),
-		charts.WithLegendOpts(opts.Legend{Show: true}),
 	)
 
 	parallel.AddSeries("Beijing", generateParallelData(parallelDataBJ))
@@ -128,7 +127,6 @@ func parallelComponent() *charts.Parallel {
 			Bottom: "10%",
 			Top:    "20%",
 		}),
-		charts.WithLegendOpts(opts.Legend{Show: true}),
 		charts.WithParallelAxisList(parallelAxisList),
 	)
 
@@ -142,7 +140,6 @@ func parallelMulti() *charts.Parallel {
 		charts.WithTitleOpts(opts.Title{
 			Title: "Multi Series",
 		}),
-		charts.WithLegendOpts(opts.Legend{Show: true}),
 		charts.WithParallelAxisList(parallelAxisList),
 	)
 

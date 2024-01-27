@@ -18,7 +18,7 @@ var TreeMap = []opts.TreeMapNode{
 		Children: []opts.TreeMapNode{{Name: "f1", Value: 1000}},
 	},
 	{
-		Name:  "d2",
+		Name: "d2",
 		Children: []opts.TreeMapNode{
 			{Name: "f1", Value: 100},
 			{Name: "f2", Value: 300},
@@ -26,7 +26,7 @@ var TreeMap = []opts.TreeMapNode{
 		},
 	},
 	{
-		Name:  "d3",
+		Name: "d3",
 		// Children populated later.
 	},
 	{
@@ -59,19 +59,18 @@ func treeMapBase() *charts.TreeMap {
 			Subtitle: "File system usage",
 			Left:     "center",
 		}),
+		charts.WithLegendOpts(opts.Legend{Show: opts.Bool(false)}),
 		charts.WithTooltipOpts(opts.Tooltip{
-			Show:      true,
 			Formatter: opts.FuncOpts(ToolTipFormatter),
 		}),
 		charts.WithToolboxOpts(opts.Toolbox{
-			Show:   true,
 			Orient: "horizontal",
 			Left:   "right",
 			Feature: &opts.ToolBoxFeature{
 				SaveAsImage: &opts.ToolBoxFeatureSaveAsImage{
-					Show: true, Title: "Save as image"},
+					Title: "Save as image"},
 				Restore: &opts.ToolBoxFeatureRestore{
-					Show: true, Title: "Reset"},
+					Title: "Reset"},
 			}}),
 	)
 	// Populate "d3" node with large number of small-sized files.
@@ -89,16 +88,16 @@ func treeMapBase() *charts.TreeMap {
 		SetSeriesOptions(
 			charts.WithTreeMapOpts(
 				opts.TreeMapChart{
-					Animation:  true,
-					Roam:       true,
-					UpperLabel: &opts.UpperLabel{Show: true},
+					Animation:  opts.Bool(true),
+					Roam:       opts.Bool(true),
+					UpperLabel: &opts.UpperLabel{Show: opts.Bool(true)},
 					Levels: &[]opts.TreeMapLevel{
 						{ // Series
 							ItemStyle: &opts.ItemStyle{
 								BorderColor: "#777",
 								BorderWidth: 1,
 								GapWidth:    1},
-							UpperLabel: &opts.UpperLabel{Show: false},
+							UpperLabel: &opts.UpperLabel{Show: opts.Bool(true)},
 						},
 						{ // Level
 							ItemStyle: &opts.ItemStyle{
@@ -121,7 +120,7 @@ func treeMapBase() *charts.TreeMap {
 				},
 			),
 			charts.WithItemStyleOpts(opts.ItemStyle{BorderColor: "#fff"}),
-			charts.WithLabelOpts(opts.Label{Show: true, Position: "inside", Color: "White"}),
+			charts.WithLabelOpts(opts.Label{Show: opts.Bool(true), Position: "inside", Color: "White"}),
 		)
 	return graph
 }

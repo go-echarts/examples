@@ -74,7 +74,7 @@ func bar3DBase() *charts.Bar3D {
 	bar3d.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{Title: "basic bar3d example"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
-			Calculable: true,
+			Calculable: opts.Bool(true),
 			Max:        30,
 			Range:      []float32{0, 30},
 			InRange:    &opts.VisualMapInRange{Color: bar3DRangeColor},
@@ -98,7 +98,7 @@ func bar3DAutoRotate() *charts.Bar3D {
 	bar3d.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{Title: "auto rotating"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
-			Calculable: true,
+			Calculable: opts.Bool(true),
 			Max:        30,
 			Range:      []float32{0, 30},
 			InRange:    &opts.VisualMapInRange{Color: bar3DRangeColor},
@@ -106,7 +106,7 @@ func bar3DAutoRotate() *charts.Bar3D {
 		charts.WithGrid3DOpts(opts.Grid3D{
 			BoxWidth:    160,
 			BoxDepth:    80,
-			ViewControl: &opts.ViewControl{AutoRotate: true},
+			ViewControl: &opts.ViewControl{AutoRotate: opts.Bool(true)},
 		}),
 	)
 
@@ -123,7 +123,7 @@ func bar3DRotateSpeed() *charts.Bar3D {
 	bar3d.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{Title: "rotating faster"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
-			Calculable: true,
+			Calculable: opts.Bool(true),
 			Max:        30,
 			Range:      []float32{0, 30},
 			InRange:    &opts.VisualMapInRange{Color: bar3DRangeColor},
@@ -131,7 +131,7 @@ func bar3DRotateSpeed() *charts.Bar3D {
 		charts.WithGrid3DOpts(opts.Grid3D{
 			BoxWidth:    160,
 			BoxDepth:    80,
-			ViewControl: &opts.ViewControl{AutoRotate: true, AutoRotateSpeed: 200},
+			ViewControl: &opts.ViewControl{AutoRotate: opts.Bool(true), AutoRotateSpeed: 200},
 		}),
 	)
 
@@ -150,7 +150,7 @@ func bar3DShading() *charts.Bar3D {
 			Title: "Bar3D-shading(lambert)",
 		}),
 		charts.WithVisualMapOpts(opts.VisualMap{
-			Calculable: true,
+			Calculable: opts.Bool(true),
 			Max:        30,
 			Range:      []float32{0, 30},
 			InRange:    &opts.VisualMapInRange{Color: bar3DRangeColor},

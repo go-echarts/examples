@@ -28,7 +28,7 @@ func liquidBase() *charts.Liquid {
 	liquid.AddSeries("liquid", genLiquidItems([]float32{0.3, 0.4, 0.5})).
 		SetSeriesOptions(
 			charts.WithLiquidChartOpts(opts.LiquidChart{
-				IsWaveAnimation: true,
+				IsWaveAnimation: opts.Bool(true),
 			}),
 		)
 	return liquid
@@ -45,10 +45,10 @@ func liquidShowLabel() *charts.Liquid {
 	liquid.AddSeries("liquid", genLiquidItems([]float32{0.3, 0.4, 0.5})).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
-				Show: true,
+				Show: opts.Bool(true),
 			}),
 			charts.WithLiquidChartOpts(opts.LiquidChart{
-				IsWaveAnimation: true,
+				IsWaveAnimation: opts.Bool(true),
 			}),
 		)
 	return liquid
@@ -65,11 +65,11 @@ func liquidOutline() *charts.Liquid {
 	liquid.AddSeries("liquid", genLiquidItems([]float32{0.3, 0.4, 0.5})).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
-				Show: true,
+				Show: opts.Bool(true),
 			}),
 			charts.WithLiquidChartOpts(opts.LiquidChart{
-				IsWaveAnimation: true,
-				IsShowOutline:   true,
+				IsWaveAnimation: opts.Bool(true),
+				IsShowOutline:   opts.Bool(true),
 			}),
 		)
 	return liquid
@@ -86,11 +86,11 @@ func liquidWaveAnimation() *charts.Liquid {
 	liquid.AddSeries("liquid", genLiquidItems([]float32{0.3, 0.4, 0.5})).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
-				Show: true,
+				Show: opts.Bool(true),
 			}),
 			charts.WithLiquidChartOpts(opts.LiquidChart{
-				IsWaveAnimation: false,
-				IsShowOutline:   true,
+				IsWaveAnimation: opts.Bool(true),
+				IsShowOutline:   opts.Bool(true),
 			}),
 		)
 	return liquid
@@ -107,7 +107,7 @@ func liquidDiamond() *charts.Liquid {
 	liquid.AddSeries("liquid", genLiquidItems([]float32{0.3, 0.4, 0.5})).
 		SetSeriesOptions(
 			charts.WithLiquidChartOpts(opts.LiquidChart{
-				IsWaveAnimation: true,
+				IsWaveAnimation: opts.Bool(true),
 				Shape:           "diamond",
 			}),
 		)
@@ -125,7 +125,7 @@ func liquidPin() *charts.Liquid {
 	liquid.AddSeries("liquid", genLiquidItems([]float32{0.3, 0.4, 0.5})).
 		SetSeriesOptions(
 			charts.WithLiquidChartOpts(opts.LiquidChart{
-				IsWaveAnimation: true,
+				IsWaveAnimation: opts.Bool(true),
 				Shape:           "pin",
 			}),
 		)
@@ -143,7 +143,7 @@ func liquidArrow() *charts.Liquid {
 	liquid.AddSeries("liquid", genLiquidItems([]float32{0.3, 0.4, 0.5})).
 		SetSeriesOptions(
 			charts.WithLiquidChartOpts(opts.LiquidChart{
-				IsWaveAnimation: true,
+				IsWaveAnimation: opts.Bool(true),
 				Shape:           "arrow",
 			}),
 		)
@@ -161,7 +161,7 @@ func liquidTriangle() *charts.Liquid {
 	liquid.AddSeries("liquid", genLiquidItems([]float32{0.3, 0.4, 0.5})).
 		SetSeriesOptions(
 			charts.WithLiquidChartOpts(opts.LiquidChart{
-				IsWaveAnimation: true,
+				IsWaveAnimation: opts.Bool(true),
 				Shape:           "triangle",
 			}),
 		)

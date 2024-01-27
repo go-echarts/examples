@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/go-echarts/examples/examples"
 )
@@ -37,7 +38,7 @@ func main() {
 		examples.ParallelExamples{},
 		examples.PieExamples{},
 		examples.RadarExamples{},
-		examples.CustomizeExamples{},
+		//examples.CustomizeExamples{},
 		examples.SankeyExamples{},
 		examples.ScatterExamples{},
 		examples.Scatter3dExamples{},
@@ -55,6 +56,15 @@ func main() {
 		e.Examples()
 	}
 
+	serverPages := "true"
+	if len(os.Args) > 1 {
+		serverPages = os.Args[1]
+	}
+
+	if serverPages == "false" {
+		log.Println("Generated pages only, not server")
+		return
+	}
 	fs := http.FileServer(http.Dir("examples/html"))
 	log.Println("running server at http://localhost:8089")
 	log.Fatal(http.ListenAndServe("localhost:8089", logRequest(fs)))

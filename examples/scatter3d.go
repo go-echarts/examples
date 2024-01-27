@@ -37,7 +37,7 @@ func scatter3DBase() *charts.Scatter3D {
 	scatter3d.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{Title: "basic Scatter3D example"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
-			Calculable: true,
+			Calculable: opts.Bool(true),
 			Max:        100,
 			InRange:    &opts.VisualMapInRange{Color: scatter3DColor},
 		}),
@@ -51,7 +51,7 @@ func scatter3DDataItem() *charts.Scatter3D {
 	scatter3d := charts.NewScatter3D()
 	scatter3d.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{Title: "user-defined item style"}),
-		charts.WithXAxis3DOpts(opts.XAxis3D{Name: "MY-X-AXIS", Show: true}),
+		charts.WithXAxis3DOpts(opts.XAxis3D{Name: "MY-X-AXIS", Show: opts.Bool(true)}),
 		charts.WithYAxis3DOpts(opts.YAxis3D{Name: "MY-Y-AXIS"}),
 		charts.WithZAxis3DOpts(opts.ZAxis3D{Name: "MY-Z-AXIS"}),
 	)

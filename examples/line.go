@@ -56,10 +56,10 @@ func lineShowLabel() *charts.Line {
 		AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(
 			charts.WithLineChartOpts(opts.LineChart{
-				ShowSymbol: true,
+				ShowSymbol: opts.Bool(true),
 			}),
 			charts.WithLabelOpts(opts.Label{
-				Show: true,
+				Show: opts.Bool(true),
 			}),
 		)
 	return line
@@ -81,7 +81,7 @@ func lineMarkPoint() *charts.Line {
 				opts.MarkPointNameTypeItem{Name: "Minimum", Type: "min"},
 			),
 			charts.WithMarkPointStyleOpts(
-				opts.MarkPointStyle{Label: &opts.Label{Show: true}}),
+				opts.MarkPointStyle{Label: &opts.Label{Show: opts.Bool(true)}}),
 		)
 	return line
 }
@@ -94,14 +94,14 @@ func lineSplitLine() *charts.Line {
 		}),
 		charts.WithYAxisOpts(opts.YAxis{
 			SplitLine: &opts.SplitLine{
-				Show: true,
+				Show: opts.Bool(true),
 			},
 		}),
 	)
 
 	line.SetXAxis(fruits).AddSeries("Category A", generateLineItems(),
 		charts.WithLabelOpts(
-			opts.Label{Show: true},
+			opts.Label{Show: opts.Bool(true)},
 		))
 	return line
 }
@@ -134,7 +134,7 @@ func lineSmooth() *charts.Line {
 	line.SetXAxis(fruits).AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(charts.WithLineChartOpts(
 			opts.LineChart{
-				Smooth: true,
+				Smooth: opts.Bool(true),
 			}),
 		)
 	return line
@@ -152,7 +152,7 @@ func lineArea() *charts.Line {
 		SetSeriesOptions(
 			charts.WithLabelOpts(
 				opts.Label{
-					Show: true,
+					Show: opts.Bool(true),
 				}),
 			charts.WithAreaStyleOpts(
 				opts.AreaStyle{
@@ -171,13 +171,13 @@ func lineSmoothArea() *charts.Line {
 	line.SetXAxis(fruits).AddSeries("Category A", generateLineItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
-				Show: true,
+				Show: opts.Bool(true),
 			}),
 			charts.WithAreaStyleOpts(opts.AreaStyle{
 				Opacity: 0.2,
 			}),
 			charts.WithLineChartOpts(opts.LineChart{
-				Smooth: true,
+				Smooth: opts.Bool(true),
 			}),
 		)
 	return line
@@ -225,7 +225,7 @@ func lineDemo() *charts.Line {
 		charts.WithYAxisOpts(opts.YAxis{
 			Name: "Cost time(ns)",
 			SplitLine: &opts.SplitLine{
-				Show: false,
+				Show: opts.Bool(true),
 			},
 		}),
 		charts.WithXAxisOpts(opts.XAxis{
@@ -235,20 +235,20 @@ func lineDemo() *charts.Line {
 
 	line.SetXAxis([]string{"10e1", "10e2", "10e3", "10e4", "10e5", "10e6", "10e7"}).
 		AddSeries("map", generateLineItems(),
-			charts.WithLabelOpts(opts.Label{Show: true, Position: "bottom"})).
+			charts.WithLabelOpts(opts.Label{Show: opts.Bool(true), Position: "bottom"})).
 		AddSeries("slice", generateLineData([]float32{24.9, 34.9, 48.1, 58.3, 69.7, 123, 131}),
-			charts.WithLabelOpts(opts.Label{Show: true, Position: "top"})).
+			charts.WithLabelOpts(opts.Label{Show: opts.Bool(true), Position: "top"})).
 		SetSeriesOptions(
 			charts.WithMarkLineNameTypeItemOpts(opts.MarkLineNameTypeItem{
 				Name: "Average",
 				Type: "average",
 			}),
 			charts.WithLineChartOpts(opts.LineChart{
-				Smooth: true,
+				Smooth: opts.Bool(true),
 			}),
 			charts.WithMarkPointStyleOpts(opts.MarkPointStyle{
 				Label: &opts.Label{
-					Show:      true,
+					Show:      opts.Bool(true),
 					Formatter: "{a}: {b}",
 				},
 			}),
@@ -266,7 +266,7 @@ func lineSymbols() *charts.Line {
 			Title:    "symbol options",
 			Subtitle: "tooltip with 'axis' trigger",
 		}),
-		charts.WithTooltipOpts(opts.Tooltip{Show: true, Trigger: "axis"}),
+		charts.WithTooltipOpts(opts.Tooltip{Show: opts.Bool(true), Trigger: "axis"}),
 	)
 
 	// Put data into instance
@@ -274,7 +274,7 @@ func lineSymbols() *charts.Line {
 		AddSeries("Category A", generateLineItems()).
 		AddSeries("Category B", generateLineItems()).
 		SetSeriesOptions(charts.WithLineChartOpts(
-			opts.LineChart{Smooth: false, ShowSymbol: true, SymbolSize: 15, Symbol: "diamond"},
+			opts.LineChart{Smooth: opts.Bool(true), ShowSymbol: opts.Bool(true), SymbolSize: 15, Symbol: "diamond"},
 		))
 
 	return line

@@ -69,15 +69,15 @@ func heatMapBase() *charts.HeatMap {
 		}),
 		charts.WithXAxisOpts(opts.XAxis{
 			Type:      "category",
-			SplitArea: &opts.SplitArea{Show: true},
+			SplitArea: &opts.SplitArea{Show: opts.Bool(true)},
 		}),
 		charts.WithYAxisOpts(opts.YAxis{
 			Type:      "category",
 			Data:      weekDays,
-			SplitArea: &opts.SplitArea{Show: true},
+			SplitArea: &opts.SplitArea{Show: opts.Bool(true)},
 		}),
 		charts.WithVisualMapOpts(opts.VisualMap{
-			Calculable: true,
+			Calculable: opts.Bool(true),
 			Min:        0,
 			Max:        10,
 			InRange: &opts.VisualMapInRange{

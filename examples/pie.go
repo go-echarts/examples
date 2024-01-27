@@ -42,7 +42,7 @@ func pieShowLabel() *charts.Pie {
 	pie.AddSeries("pie", generatePieItems()).
 		SetSeriesOptions(charts.WithLabelOpts(
 			opts.Label{
-				Show:      true,
+				Show:      opts.Bool(true),
 				Formatter: "{b}: {c}",
 			}),
 		)
@@ -58,7 +58,7 @@ func pieRadius() *charts.Pie {
 	pie.AddSeries("pie", generatePieItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
-				Show:      true,
+				Show:      opts.Bool(true),
 				Formatter: "{b}: {c}",
 			}),
 			charts.WithPieChartOpts(opts.PieChart{
@@ -79,7 +79,7 @@ func pieRoseArea() *charts.Pie {
 	pie.AddSeries("pie", generatePieItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
-				Show:      true,
+				Show:      opts.Bool(true),
 				Formatter: "{b}: {c}",
 			}),
 			charts.WithPieChartOpts(opts.PieChart{
@@ -101,7 +101,7 @@ func pieRoseRadius() *charts.Pie {
 	pie.AddSeries("pie", generatePieItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
-				Show:      true,
+				Show:      opts.Bool(true),
 				Formatter: "{b}: {c}",
 			}),
 			charts.WithPieChartOpts(opts.PieChart{
@@ -132,7 +132,7 @@ func pieRoseAreaRadius() *charts.Pie {
 	pie.AddSeries("pie", generatePieItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
-				Show:      true,
+				Show:      opts.Bool(true),
 				Formatter: "{b}: {c}",
 			}),
 			charts.WithPieChartOpts(opts.PieChart{
@@ -154,7 +154,7 @@ func pieInPie() *charts.Pie {
 
 	pie.AddSeries("area", generatePieItems(),
 		charts.WithLabelOpts(opts.Label{
-			Show:      true,
+			Show:      opts.Bool(true),
 			Formatter: "{b}: {c}",
 		}),
 		charts.WithPieChartOpts(opts.PieChart{
@@ -172,6 +172,72 @@ func pieInPie() *charts.Pie {
 	return pie
 }
 
+func pieWithDispatchAction() *charts.Pie {
+	const actionWithEchartsInstance = `
+		let currentIndex = -1;
+		setInterval(function() {
+		  const myChart = %MY_ECHARTS%;
+		  var dataLen = myChart.getOption().series[0].data.length;
+		  myChart.dispatchAction({
+			type: 'downplay',
+			seriesIndex: 0,
+			dataIndex: currentIndex
+		  });
+		  currentIndex = (currentIndex + 1) % dataLen;
+		  myChart.dispatchAction({
+			type: 'highlight',
+			seriesIndex: 0,
+			dataIndex: currentIndex
+		  });
+		  myChart.dispatchAction({
+			type: 'showTip',
+			seriesIndex: 0,
+			dataIndex: currentIndex
+		  });
+		}, 1000);
+`
+
+	pie := charts.NewPie()
+	pie.AddJSFuncStrs(actionWithEchartsInstance)
+	pie.SetGlobalOptions(
+		charts.WithTitleOpts(opts.Title{
+			Title: "dispatchAction pie",
+			Right: "40%",
+		}),
+		charts.WithTooltipOpts(opts.Tooltip{
+			Trigger:   "item",
+			Formatter: "{a} <br/>{b} : {c} ({d}%)",
+		}),
+		charts.WithLegendOpts(opts.Legend{
+			Left:   "left",
+			Orient: "vertical",
+		}),
+	)
+
+	pie.AddSeries("pie action", generatePieItems()).
+		SetSeriesOptions(
+			charts.WithLabelOpts(opts.Label{
+				Show:      opts.Bool(true),
+				Formatter: "{b}: {c}",
+			}),
+			charts.WithPieChartOpts(opts.PieChart{
+				Radius: []string{"55%"},
+				Center: []string{"50%", "60%"},
+			}),
+
+			charts.WithEmphasisOpts(opts.Emphasis{
+				ItemStyle: &opts.ItemStyle{
+					ShadowBlur:    10,
+					ShadowOffsetX: 0,
+					ShadowColor:   "rgba(0, 0, 0, 0.5)",
+				},
+			}),
+		)
+
+	return pie
+
+}
+
 type PieExamples struct{}
 
 func (PieExamples) Examples() {
@@ -184,6 +250,7 @@ func (PieExamples) Examples() {
 		pieRoseRadius(),
 		pieRoseAreaRadius(),
 		pieInPie(),
+		pieWithDispatchAction(),
 	)
 	f, err := os.Create("examples/html/pie.html")
 	if err != nil {

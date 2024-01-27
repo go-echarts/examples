@@ -59,7 +59,7 @@ func graphCircle() *charts.Graph {
 					Force:  &opts.GraphForce{Repulsion: 8000},
 					Layout: "circular",
 				}),
-			charts.WithLabelOpts(opts.Label{Show: true, Position: "right"}),
+			charts.WithLabelOpts(opts.Label{Show: opts.Bool(true), Position: "right"}),
 		)
 	return graph
 }
@@ -90,12 +90,12 @@ func graphNpmDep() *charts.Graph {
 		SetSeriesOptions(
 			charts.WithGraphChartOpts(opts.GraphChart{
 				Layout:             "none",
-				Roam:               true,
-				FocusNodeAdjacency: true,
+				Roam:               opts.Bool(true),
+				FocusNodeAdjacency: opts.Bool(true),
 			}),
 			charts.WithEmphasisOpts(opts.Emphasis{
 				Label: &opts.Label{
-					Show:     true,
+					Show:     opts.Bool(true),
 					Color:    "black",
 					Position: "left",
 				},

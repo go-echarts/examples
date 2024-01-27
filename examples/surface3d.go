@@ -60,7 +60,7 @@ func surface3DBase() *charts.Surface3D {
 	surface3d.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{Title: "basic surface3D example"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
-			Calculable: true,
+			Calculable: opts.Bool(true),
 			InRange:    &opts.VisualMapInRange{Color: surfaceRangeColor},
 			Max:        3,
 			Min:        -3,
@@ -76,7 +76,7 @@ func surface3DRose() *charts.Surface3D {
 	surface3d.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{Title: "Rose style"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
-			Calculable: true,
+			Calculable: opts.Bool(true),
 			InRange:    &opts.VisualMapInRange{Color: surfaceRangeColor},
 			Max:        3,
 			Min:        -3,

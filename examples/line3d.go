@@ -36,7 +36,7 @@ func line3DBase() *charts.Line3D {
 	line3d.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{Title: "basic line3d example"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
-			Calculable: true,
+			Calculable: opts.Bool(true),
 			Max:        30,
 			InRange:    &opts.VisualMapInRange{Color: line3DColor},
 		}),
@@ -51,14 +51,14 @@ func line3DAutoRotate() *charts.Line3D {
 	line3d.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{Title: "auto rotating"}),
 		charts.WithVisualMapOpts(opts.VisualMap{
-			Calculable: true,
+			Calculable: opts.Bool(true),
 			Max:        30,
 			InRange:    &opts.VisualMapInRange{Color: line3DColor},
 		}),
 
 		charts.WithGrid3DOpts(opts.Grid3D{
 			ViewControl: &opts.ViewControl{
-				AutoRotate: true,
+				AutoRotate: opts.Bool(true),
 			},
 		}),
 	)

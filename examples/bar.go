@@ -44,8 +44,7 @@ func barTitle() *charts.Bar {
 			Link:     "https://github.com/go-echarts/go-echarts",
 			Right:    "40%",
 		}),
-		charts.WithToolboxOpts(opts.Toolbox{Show: true}),
-		charts.WithLegendOpts(opts.Legend{Show: true, Right: "80%"}),
+		charts.WithLegendOpts(opts.Legend{Right: "80%"}),
 	)
 	bar.SetXAxis(weeks).
 		AddSeries("Category A", generateBarItems()).
@@ -57,8 +56,7 @@ func barTooltip() *charts.Bar {
 	bar := charts.NewBar()
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{Title: "tooltip options"}),
-		charts.WithTooltipOpts(opts.Tooltip{Show: true}),
-		charts.WithLegendOpts(opts.Legend{Show: true, Right: "80px"}),
+		charts.WithLegendOpts(opts.Legend{Right: "80px"}),
 	)
 	bar.SetXAxis(weeks).
 		AddSeries("Category A", generateBarItems()).
@@ -71,16 +69,13 @@ func barSetToolbox() *charts.Bar {
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{Title: "toolbox options"}),
 		charts.WithToolboxOpts(opts.Toolbox{
-			Show:  true,
 			Right: "20%",
 			Feature: &opts.ToolBoxFeature{
 				SaveAsImage: &opts.ToolBoxFeatureSaveAsImage{
-					Show:  true,
 					Type:  "jpg",
 					Title: "Anything you want",
 				},
 				DataView: &opts.ToolBoxFeatureDataView{
-					Show:  true,
 					Title: "DataView",
 					// set the language
 					// Chinese version: ["数据视图", "关闭", "刷新"]
@@ -105,7 +100,6 @@ func barShowLabel() *charts.Bar {
 		AddSeries("Category B", generateBarItems()).
 		SetSeriesOptions(
 			charts.WithLabelOpts(opts.Label{
-				Show:     true,
 				Position: "top",
 			}),
 		)
@@ -136,10 +130,10 @@ func barXYFormatter() *charts.Bar {
 	bar.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{Title: "customized the xaxis/yaxis formatter"}),
 		charts.WithXAxisOpts(opts.XAxis{
-			AxisLabel: &opts.AxisLabel{Show: true, Formatter: "{value} x-unit"},
+			AxisLabel: &opts.AxisLabel{Formatter: "{value} x-unit"},
 		}),
 		charts.WithYAxisOpts(opts.YAxis{
-			AxisLabel: &opts.AxisLabel{Show: true, Formatter: "{value} y-unit"},
+			AxisLabel: &opts.AxisLabel{Formatter: "{value} y-unit"},
 		}),
 	)
 	bar.SetXAxis(weeks).
@@ -171,13 +165,13 @@ func barSplitLine() *charts.Bar {
 		charts.WithXAxisOpts(opts.XAxis{
 			Name: "XAxisName",
 			SplitLine: &opts.SplitLine{
-				Show: true,
+				Show: opts.Bool(true),
 			},
 		}),
 		charts.WithYAxisOpts(opts.YAxis{
 			Name: "YAxisName",
 			SplitLine: &opts.SplitLine{
-				Show: true,
+				Show: opts.Bool(true),
 			},
 		}),
 	)
@@ -290,7 +284,7 @@ func barMarkPoints() *charts.Bar {
 			Name:       "special mark",
 			Coordinate: []interface{}{"Mon", 100},
 			Label: &opts.Label{
-				Show:     true,
+				Show:     opts.Bool(true),
 				Color:    "pink",
 				Position: "inside",
 			},

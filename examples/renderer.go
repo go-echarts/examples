@@ -11,7 +11,7 @@ import (
 	tpls "github.com/go-echarts/go-echarts/v2/templates"
 )
 
-// copy from go-echarts/templates/header.go
+// HeaderTpl copy from go-echarts/templates/header.go
 // Now I want to customize my own Header (or tpls.BaseTpl / tpls.ChartTpl) template
 var HeaderTpl = `
 {{ define "header" }}
@@ -35,6 +35,11 @@ type myOwnRender struct {
 
 func NewMyOwnRender(c interface{}, before ...func()) render.Renderer {
 	return &myOwnRender{c: c, before: before}
+}
+
+func (r *myOwnRender) RenderContent() []byte {
+	// Implementation me
+	return nil
 }
 
 func (r *myOwnRender) Render(w io.Writer) error {
