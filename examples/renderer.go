@@ -2,6 +2,8 @@ package examples
 
 import (
 	"bytes"
+	"fmt"
+	"html/template"
 	"io"
 	"os"
 
@@ -16,30 +18,26 @@ import (
 var HeaderTpl = `
 {{ define "header" }}
 <head>
-   <meta charset="utf-8">
-   <title>{{ .PageTitle }} --> This is my own style template 🐶</title>
+  <meta charset="utf-8">
+  <title>{{ .PageTitle }} --> This is my own style template 🐶</title>
 {{- range .JSAssets.Values }}
-   <script src="{{ . }}"></script>
+  <script src="{{ . }}"></script>
 {{- end }}
 {{- range .CSSAssets.Values }}
-   <link href="{{ . }}" rel="stylesheet">
+  <link href="{{ . }}" rel="stylesheet">
 {{- end }}
 </head>
 {{ end }}
 `
 
 type myOwnRender struct {
+	render.BaseRender
 	c      interface{}
 	before []func()
 }
 
 func NewMyOwnRender(c interface{}, before ...func()) render.Renderer {
 	return &myOwnRender{c: c, before: before}
-}
-
-func (r *myOwnRender) RenderContent() []byte {
-	// Implementation me
-	return nil
 }
 
 func (r *myOwnRender) Render(w io.Writer) error {
@@ -75,13 +73,52 @@ func barCustomize() *charts.Bar {
 	return bar
 }
 
-type CustomizeExamples struct{}
+func renderSnippets() {
+	bar := charts.NewBar()
+	bar.SetGlobalOptions(charts.WithTitleOpts(opts.Title{
+		Title: "My renderSnippets",
+	}))
 
-func (CustomizeExamples) Examples() {
-	bar := barCustomize()
-	f, err := os.Create("examples/html/customize.html")
+	bar.SetXAxis([]string{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"}).
+		AddSeries("Category A", generateBarItems()).
+		AddSeries("Category B", generateBarItems())
+
+	chartSnippet := bar.RenderSnippet()
+
+	tmpl := "{{.Element  }} {{.Script}} {{.Option}}"
+	t := template.New("snippet")
+	t, err := t.Parse(tmpl)
 	if err != nil {
 		panic(err)
 	}
-	bar.Render(io.MultiWriter(f))
+
+	data := struct {
+		Element template.HTML
+		Script  template.HTML
+		Option  template.HTML
+	}{
+		Element: template.HTML(chartSnippet.Element),
+		Script:  template.HTML(chartSnippet.Script),
+		Option:  template.HTML(chartSnippet.Option),
+	}
+
+	fmt.Println("------ Render snippets output:")
+	err = t.Execute(os.Stdout, data)
+	if err != nil {
+		panic(err)
+	}
+}
+
+type CustomizeExamples struct{}
+
+func (CustomizeExamples) Examples() {
+	// print it instead of generated files
+	fmt.Println("Customer Render outputs:")
+	renderSnippets()
+	fmt.Println("------ Render customer render output:")
+	bar := barCustomize()
+	err := bar.Render(os.Stdout)
+	if err != nil {
+		panic(err)
+	}
 }
