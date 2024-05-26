@@ -85,7 +85,7 @@ func renderSnippets() {
 
 	chartSnippet := bar.RenderSnippet()
 
-	tmpl := "{{.Element  }} {{.Script}} {{.Option}}"
+	tmpl := "{{.Element}} {{.Script}} {{.Option}}"
 	t := template.New("snippet")
 	t, err := t.Parse(tmpl)
 	if err != nil {
