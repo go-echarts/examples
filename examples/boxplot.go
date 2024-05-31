@@ -7,11 +7,12 @@ import (
 	"github.com/go-echarts/go-echarts/v2/charts"
 	"github.com/go-echarts/go-echarts/v2/components"
 	"github.com/go-echarts/go-echarts/v2/opts"
+	"github.com/montanaflynn/stats"
 )
 
 var (
 	bpX = [...]string{"expr1", "expr2", "expr3", "expr4", "expr5"}
-	bpY = [][]int{
+	bpY = [][]float64{
 		{850, 740, 900, 1070, 930, 850, 950, 980, 980, 880, 1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960},
 		{960, 940, 960, 940, 880, 800, 850, 880, 900, 840, 830, 790, 810, 880, 880, 830, 800, 790, 760, 800},
 		{880, 880, 880, 860, 720, 720, 620, 860, 970, 950, 880, 910, 850, 870, 840, 840, 850, 840, 840, 840},
@@ -20,10 +21,24 @@ var (
 	}
 )
 
-func generateBoxPlotItems(boxPlotData [][]int) []opts.BoxPlotData {
+func createBoxPlotData(data []float64) []float64 {
+	min, _ := stats.Min(data)
+	max, _ := stats.Max(data)
+	q, _ := stats.Quartile(data)
+
+	return []float64{
+		min,
+		q.Q1,
+		q.Q2,
+		q.Q3,
+		max,
+	}
+}
+
+func generateBoxPlotItems(boxPlotData [][]float64) []opts.BoxPlotData {
 	items := make([]opts.BoxPlotData, 0)
 	for i := 0; i < len(boxPlotData); i++ {
-		items = append(items, opts.BoxPlotData{Value: boxPlotData[i]})
+		items = append(items, opts.BoxPlotData{Value: createBoxPlotData(boxPlotData[i])})
 	}
 	return items
 
