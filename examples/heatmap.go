@@ -2,7 +2,9 @@ package examples
 
 import (
 	"io"
+	"math/rand/v2"
 	"os"
+	"time"
 
 	"github.com/go-echarts/go-echarts/v2/charts"
 	"github.com/go-echarts/go-echarts/v2/components"
@@ -90,12 +92,62 @@ func heatMapBase() *charts.HeatMap {
 	return hm
 }
 
+func genHeatMapCalendarData(start time.Time, end time.Time) []opts.HeatMapData {
+	var items []opts.HeatMapData
+	for dt := start; dt.Before(end); dt = dt.AddDate(0, 0, 1) {
+		value := rand.IntN(21)
+		if value == 0 {
+			items = append(items, opts.HeatMapData{Value: [2]interface{}{dt.Format("2006-01-02"), "-"}})
+		} else {
+			items = append(items, opts.HeatMapData{Value: [2]interface{}{dt.Format("2006-01-02"), value}})
+		}
+	}
+
+	return items
+}
+
+func heatMapCalendar() *charts.HeatMap {
+	hm := charts.NewHeatMap()
+	hm.SetGlobalOptions(
+		charts.WithTitleOpts(opts.Title{Title: "calendar heatmap example"}),
+		charts.WithVisualMapOpts(opts.VisualMap{
+			Min: 0,
+			Max: 20,
+			InRange: &opts.VisualMapInRange{
+				Color: []string{"#50a3ba", "#eac736", "#d94e5d"},
+			},
+		}),
+	)
+
+	calendarOpts := &opts.Calendar{
+		Top:      "80",
+		Left:     "30",
+		Right:    "30",
+		CellSize: "20",
+		ItemStyle: &opts.ItemStyle{
+			BorderWidth: 0.5,
+		},
+		Orient: "horizontal",
+	}
+
+	end := time.Now()
+	start := end.Add(time.Duration(-366) * time.Hour * 24)
+	calendarOpts.Range = append(calendarOpts.Range,
+		start.Format("2006-01-02"),
+		end.Format("2006-01-02"))
+
+	hm.AddCalendar(calendarOpts).AddSeries("heatmap calendar", genHeatMapCalendarData(start, end), charts.WithCoordinateSystem("calendar"))
+
+	return hm
+}
+
 type HeatmapExamples struct{}
 
 func (HeatmapExamples) Examples() {
 	page := components.NewPage()
 	page.AddCharts(
 		heatMapBase(),
+		heatMapCalendar(),
 	)
 
 	f, err := os.Create("examples/html/heatmap.html")
