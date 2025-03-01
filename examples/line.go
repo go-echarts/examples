@@ -4,6 +4,7 @@ import (
 	"io"
 	"math/rand"
 	"os"
+	"time"
 
 	"github.com/go-echarts/go-echarts/v2/charts"
 	"github.com/go-echarts/go-echarts/v2/components"
@@ -19,6 +20,14 @@ func generateLineItems() []opts.LineData {
 	items := make([]opts.LineData, 0)
 	for i := 0; i < itemCntLine; i++ {
 		items = append(items, opts.LineData{Value: rand.Intn(300)})
+	}
+	return items
+}
+
+func generateLineItemsTwoAxis(points int, xFunc func(int) interface{}) []opts.LineData {
+	items := make([]opts.LineData, 0)
+	for i := 0; i < points; i++ {
+		items = append(items, opts.LineData{Value: []interface{}{xFunc(i), 100 + rand.Intn(20)}})
 	}
 	return items
 }
@@ -106,6 +115,92 @@ func lineSplitLine() *charts.Line {
 	return line
 }
 
+func lineNumerical() *charts.Line {
+	line := charts.NewLine()
+	line.SetGlobalOptions(
+		charts.WithTitleOpts(opts.Title{
+			Title:    "numerical X axis & accessories",
+			Subtitle: "styled mark areas, mark lines and visual maps (area below line pieces)",
+		}),
+		charts.WithYAxisOpts(opts.YAxis{
+			Max: 200,
+		}),
+		charts.WithVisualMapOpts(opts.VisualMap{
+			Type:      "piecewise",
+			Dimension: "0",
+			Pieces: []opts.Piece{
+				{Gt: 1, Lt: 7, Color: "rgba(50,50,250,0.4)"},
+				{Gt: 10, Lt: 15, Color: "rgba(50,50,250,0.5)"},
+			},
+			Show: opts.Bool(false),
+		}),
+	)
+
+	line.AddSeries("Category A", generateLineItemsTwoAxis(30, func(i int) interface{} { return i }),
+		charts.WithLineChartOpts(opts.LineChart{
+			Symbol:     "triangle",
+			SymbolSize: 10,
+		}),
+		charts.WithAreaStyleOpts(opts.AreaStyle{}),
+		charts.WithLineStyleOpts(opts.LineStyle{
+			Color: "rgba(50,50,250,0.7)",
+		}),
+		charts.WithItemStyleOpts(opts.ItemStyle{
+			Color: "rgba(50,50,250,0.7)",
+		}),
+		charts.WithMarkAreaNameCoordItemOpts(
+			opts.MarkAreaNameCoordItem{
+				Name:        "Danger zone",
+				Coordinate0: []interface{}{20},
+				Coordinate1: []interface{}{25},
+				Label:       &opts.Label{Show: opts.Bool(true), Position: "middle"},
+				ItemStyle:   &opts.ItemStyle{Color: "rgba(255, 173, 177, 0.5)"},
+			},
+		),
+		charts.WithMarkLineStyleOpts(opts.MarkLineStyle{
+			Symbol:     []string{"square", "circle"},
+			SymbolSize: 10,
+		}),
+		charts.WithMarkLineNameCoordItemOpts(opts.MarkLineNameCoordItem{
+			Name:        "Danger level",
+			Coordinate0: []interface{}{20, 10},
+			Coordinate1: []interface{}{25, 50},
+		}),
+		charts.WithMarkLineNameXAxisItemOpts(
+			opts.MarkLineNameXAxisItem{
+				Name:  "Line of no return",
+				XAxis: 28,
+			},
+		),
+	)
+	return line
+}
+
+func lineTime() *charts.Line {
+	line := charts.NewLine()
+	line.SetGlobalOptions(
+		charts.WithTitleOpts(opts.Title{
+			Title:    "temporal X axis",
+			Subtitle: "time.Date as X axis values",
+		}),
+		charts.WithYAxisOpts(opts.YAxis{
+			Min: 0,
+			Max: 200,
+		}),
+		charts.WithXAxisOpts(opts.XAxis{
+			Type: "time",
+			Min:  time.Date(2025, time.January, 1, 0, 0, 0, 0, time.Local),
+		}),
+		charts.WithTooltipOpts(opts.Tooltip{ // Potential to string format tooltip here
+			Show:    opts.Bool(true),
+			Trigger: "axis",
+		}),
+	)
+
+	line.AddSeries("Category A", generateLineItemsTwoAxis(50, func(i int) interface{} { return time.Date(2025, time.February, i, 0, 0, 0, 0, time.Local) }))
+	return line
+}
+
 func lineStep() *charts.Line {
 	line := charts.NewLine()
 	line.SetGlobalOptions(
@@ -158,6 +253,15 @@ func lineArea() *charts.Line {
 				opts.AreaStyle{
 					Opacity: 0.2,
 				}),
+			charts.WithMarkAreaNameCoordItemOpts(
+				opts.MarkAreaNameCoordItem{
+					Name:        "In stock",
+					Coordinate0: []interface{}{2},
+					Coordinate1: []interface{}{4},
+					Label:       &opts.Label{Show: opts.Bool(true), Position: "middle"},
+					ItemStyle:   &opts.ItemStyle{Color: "rgba(82, 228, 167, 0.5)"},
+				},
+			),
 		)
 	return line
 }
@@ -290,6 +394,8 @@ func (LineExamples) Examples() {
 		lineSymbols(),
 		lineMarkPoint(),
 		lineSplitLine(),
+		lineNumerical(),
+		lineTime(),
 		lineStep(),
 		lineSmooth(),
 		lineArea(),
