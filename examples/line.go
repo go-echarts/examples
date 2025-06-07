@@ -251,7 +251,7 @@ func lineArea() *charts.Line {
 				}),
 			charts.WithAreaStyleOpts(
 				opts.AreaStyle{
-					Opacity: 0.2,
+					Opacity: opts.Float(0.5),
 				}),
 			charts.WithMarkAreaNameCoordItemOpts(
 				opts.MarkAreaNameCoordItem{
@@ -278,7 +278,7 @@ func lineSmoothArea() *charts.Line {
 				Show: opts.Bool(true),
 			}),
 			charts.WithAreaStyleOpts(opts.AreaStyle{
-				Opacity: 0.2,
+				Opacity: opts.Float(0.2),
 			}),
 			charts.WithLineChartOpts(opts.LineChart{
 				Smooth: opts.Bool(true),
