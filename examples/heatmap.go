@@ -2,7 +2,7 @@ package examples
 
 import (
 	"io"
-	"math/rand/v2"
+	"math/rand"
 	"os"
 	"time"
 
@@ -95,7 +95,7 @@ func heatMapBase() *charts.HeatMap {
 func genHeatMapCalendarData(start time.Time, end time.Time) []opts.HeatMapData {
 	var items []opts.HeatMapData
 	for dt := start; dt.Before(end); dt = dt.AddDate(0, 0, 1) {
-		value := rand.IntN(21)
+		value := rand.Intn(21)
 		if value == 0 {
 			items = append(items, opts.HeatMapData{Value: [2]interface{}{dt.Format("2006-01-02"), "-"}})
 		} else {
