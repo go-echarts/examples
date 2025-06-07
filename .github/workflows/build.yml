@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [ "master" ]
   workflow_dispatch:
+    inputs:
+      ref-commit-id:
+        description: 'Ref main repo branch commit id (default is master latest one )'
+        required: true
+        default: 'master'
+        type: string
 
 jobs:
   build:
@@ -19,8 +25,9 @@ jobs:
           go-version: '1.18'
 
       - name: Run Examples generate original html files with go-echarts
+        if:
         run: |
-          go get github.com/go-echarts/go-echarts/v2@master
+          go get github.com/go-echarts/go-echarts/v2@${{ github.event.inputs.ref-commit-id || 'master' }}
           echo "Currently working on go-echarts version ===>"
           cat go.mod
           go mod tidy
