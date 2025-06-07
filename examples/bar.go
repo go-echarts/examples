@@ -351,6 +351,20 @@ func barSize() *charts.Bar {
 	return bar
 }
 
+func barWidth() *charts.Bar {
+	bar := charts.NewBar()
+	bar.SetGlobalOptions(
+		charts.WithTitleOpts(opts.Title{
+			Title: "adjust width of each bar",
+		}),
+	)
+	bar.SetXAxis(weeks)
+	bar.AddSeries("Category A", generateBarItems(), charts.WithBarChartOpts(opts.BarChart{BarWidth: "35"}))
+	bar.AddSeries("Category B", generateBarItems(), charts.WithBarChartOpts(opts.BarChart{BarWidth: "15%"}))
+	return bar
+
+}
+
 type Exampler interface {
 	Examples()
 }
@@ -378,6 +392,7 @@ func (BarExamples) Examples() {
 		barMarkLines(),
 		barOverlap(),
 		barSize(),
+		barWidth(),
 	)
 	f, err := os.Create("examples/html/bar.html")
 	if err != nil {
