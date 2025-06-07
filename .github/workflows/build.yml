@@ -20,6 +20,7 @@ jobs:
 
       - name: Run Examples generate original html files with go-echarts
         run: |
+          go get github.com/go-echarts/go-echarts/v2@master
           echo "Currently working on go-echarts version ===>"
           cat go.mod
           go mod tidy
