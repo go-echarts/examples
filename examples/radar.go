@@ -135,7 +135,7 @@ func radarStyle() *charts.Radar {
 			SplitLine: &opts.SplitLine{
 				Show: opts.Bool(true),
 				LineStyle: &opts.LineStyle{
-					Opacity: 0.1,
+					Opacity: opts.Float(0.1),
 				},
 			},
 		}),
@@ -153,10 +153,10 @@ func radarStyle() *charts.Radar {
 		SetSeriesOptions(
 			charts.WithLineStyleOpts(opts.LineStyle{
 				Width:   1,
-				Opacity: 0.5,
+				Opacity: opts.Float(0.5),
 			}),
 			charts.WithAreaStyleOpts(opts.AreaStyle{
-				Opacity: 0.1,
+				Opacity: opts.Float(0.1),
 			}),
 			charts.WithItemStyleOpts(opts.ItemStyle{
 				Color: "#F9713C",
@@ -185,7 +185,7 @@ func radarLegendMulti() *charts.Radar {
 			SplitLine: &opts.SplitLine{
 				Show: opts.Bool(true),
 				LineStyle: &opts.LineStyle{
-					Opacity: 0.1,
+					Opacity: opts.Float(0.1),
 				},
 			},
 		}),
@@ -204,10 +204,10 @@ func radarLegendMulti() *charts.Radar {
 		SetSeriesOptions(
 			charts.WithLineStyleOpts(opts.LineStyle{
 				Width:   1,
-				Opacity: 0.5,
+				Opacity: opts.Float(0.5),
 			}),
 			charts.WithAreaStyleOpts(opts.AreaStyle{
-				Opacity: 0.1,
+				Opacity: opts.Float(0.1),
 			}),
 		)
 	return radar
@@ -233,7 +233,7 @@ func radarLegendSingle() *charts.Radar {
 			SplitLine: &opts.SplitLine{
 				Show: opts.Bool(true),
 				LineStyle: &opts.LineStyle{
-					Opacity: 0.1,
+					Opacity: opts.Float(0.1),
 				},
 			},
 		}),
@@ -253,8 +253,8 @@ func radarLegendSingle() *charts.Radar {
 		AddSeries("Shanghai", generateRadarItems(radarDataSH),
 			charts.WithItemStyleOpts(opts.ItemStyle{Color: "rgb(238, 197, 102)"})).
 		SetSeriesOptions(
-			charts.WithLineStyleOpts(opts.LineStyle{Width: 1, Opacity: 0.5}),
-			charts.WithAreaStyleOpts(opts.AreaStyle{Opacity: 0.1}),
+			charts.WithLineStyleOpts(opts.LineStyle{Width: 1, Opacity: opts.Float(.5)}),
+			charts.WithAreaStyleOpts(opts.AreaStyle{Opacity: opts.Float(.5)}),
 		)
 	return radar
 }

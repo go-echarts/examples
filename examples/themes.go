@@ -2,12 +2,13 @@ package examples
 
 import (
 	"fmt"
+	"io"
+	"os"
+
 	"github.com/go-echarts/go-echarts/v2/charts"
 	"github.com/go-echarts/go-echarts/v2/components"
 	"github.com/go-echarts/go-echarts/v2/opts"
 	"github.com/go-echarts/go-echarts/v2/types"
-	"io"
-	"os"
 )
 
 func barWithTheme(theme string) *charts.Bar {
