@@ -68,6 +68,36 @@ func pieRadius() *charts.Pie {
 	return pie
 }
 
+func pieRadiusWithPadAngle() *charts.Pie {
+	pie := charts.NewPie()
+	pie.SetGlobalOptions(
+		charts.WithTitleOpts(opts.Title{Title: "Radius style with padAngle"}),
+		charts.WithTooltipOpts(opts.Tooltip{
+			Show:      opts.Bool(true),
+			Formatter: "{b}: {d}%",
+		}),
+		charts.WithLegendOpts(opts.Legend{
+			Orient:  "vertical",
+			Right:   "20%",
+			Top:     "center",
+			Padding: []any{1, 1, 1, 1},
+		}),
+	)
+
+	pie.AddSeries("pie", generatePieItems()).
+		SetSeriesOptions(
+			charts.WithLabelOpts(opts.Label{
+				Show: opts.Bool(false),
+			}),
+			charts.WithPieChartOpts(opts.PieChart{
+				Radius:   []string{"40%", "75%"},
+				Center:   []string{"40%", "50%"},
+				PadAngle: 5,
+			}),
+		)
+	return pie
+}
+
 func pieRoseArea() *charts.Pie {
 	pie := charts.NewPie()
 	pie.SetGlobalOptions(
@@ -242,10 +272,12 @@ type PieExamples struct{}
 
 func (PieExamples) Examples() {
 	page := components.NewPage()
+	page.AssetsHost = "https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/"
 	page.AddCharts(
 		pieBase(),
 		pieShowLabel(),
 		pieRadius(),
+		pieRadiusWithPadAngle(),
 		pieRoseArea(),
 		pieRoseRadius(),
 		pieRoseAreaRadius(),
